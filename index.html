@@ -23,46 +23,49 @@
     <header class="border-b border-gray-200 shadow-sm">
         <div class="container mx-auto px-6 py-4 flex flex-col md:flex-row justify-between items-center">
             <!-- Website Title -->
-            <h1 class="text-2xl font-bold text-gray-800 mb-4 md:mb-0">Hyderabad Urban Observatory</h1>
+            <h1 class="text-2xl font-bold text-gray-900 mb-4 md:mb-0">Hyderabad Urban Observatory</h1>
             <!-- Navigation -->
             <nav>
                 <ul class="flex space-x-6 sm:space-x-8 text-gray-700">
-                    <li><a href="#" class="hover:text-blue-600 transition-colors duration-200 ease-in-out font-medium">Home</a></li>
-                    <li><a href="#" class="hover:text-blue-600 transition-colors duration-200 ease-in-out font-medium">Data Sources</a></li>
-                    <li><a href="#" class="hover:text-blue-600 transition-colors duration-200 ease-in-out font-medium">Contact</a></li>
+                    <li><a href="index.html" class="hover:text-blue-600 transition-colors duration-200 ease-in-out font-medium">Home</a></li>
+                    <li><a href="data-sources.html" class="hover:text-blue-600 transition-colors duration-200 ease-in-out font-medium">Data Sources</a></li>
+                    <li><a href="contact.html" class="hover:text-blue-600 transition-colors duration-200 ease-in-out font-medium">Contact</a></li>
                 </ul>
             </nav>
         </div>
     </header>
 
     <!-- Main Content Section -->
-    <main class="container mx-auto px-6 py-16 flex-grow">
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
-            <!-- Spatial Data Observatory Box -->
-            <div class="bg-gray-50 p-8 rounded-xl border border-gray-200 shadow-lg hover:shadow-xl transition-shadow duration-300 ease-in-out cursor-pointer">
-                <h2 class="text-3xl font-semibold text-gray-800 mb-3">Spatial Data Observatory</h2>
-                <p class="text-gray-600 text-lg">Explore all layers of spatial data related to Hyderabad's urban development and planning.</p>
-            </div>
+    <main class="container mx-auto px-6 py-10 flex-grow">
+        <!-- Spatial Data Portal Box (Main Box) -->
+        <a href="spatial-data-portal.html" class="block bg-gray-50 p-7 rounded-xl border border-gray-200 shadow-lg hover:shadow-xl transition-shadow duration-300 ease-in-out cursor-pointer mb-10">
+            <h2 class="text-3xl font-semibold text-gray-900 mb-3">Spatial Data Portal</h2>
+            <p class="text-lg text-gray-700">Explore all layers of spatial data related to Hyderabad's urban development and planning.</p>
+        </a>
 
-            <!-- Proposed Land Use 2031 Box -->
-            <div class="bg-gray-50 p-8 rounded-xl border border-gray-200 shadow-lg hover:shadow-xl transition-shadow duration-300 ease-in-out cursor-pointer">
-                <h2 class="text-3xl font-semibold text-gray-800 mb-3">Proposed Land Use 2031</h2>
-                <p class="text-gray-600 text-lg">View and analyze the proposed land use plan for Hyderabad up to the year 2031.</p>
+        <!-- Thematic Areas Section -->
+        <h3 class="text-2xl font-bold text-gray-900 mb-6 text-left">Thematic Areas</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+            <!-- Planning Section -->
+            <div class="col-span-1">
+                <a href="proposed-land-use.html" class="block bg-gray-50 p-7 rounded-xl border border-gray-200 shadow-lg hover:shadow-xl transition-shadow duration-300 ease-in-out cursor-pointer">
+                    <p class="text-sm font-bold text-gray-800 uppercase mb-2">Planning</p>
+                    <h2 class="text-xl font-semibold text-gray-900 mb-3">Proposed Land Use 2031</h2>
+                    <p class="text-base text-gray-700">View and analyze the proposed land use plan for Hyderabad up to the year 2031.</p>
+                </a>
             </div>
+            <!-- Other thematic boxes can be added here if needed in the future -->
         </div>
     </main>
 
     <!-- Footer Section -->
-    <footer class="bg-white text-gray-700 py-8 mt-16 border-t border-gray-200 shadow-sm">
+    <footer class="bg-white text-gray-700 py-6 mt-16 border-t border-gray-200 shadow-sm">
         <div class="container mx-auto px-6 text-center">
             <p class="text-xs mb-2">This website is under continuous development. You may encounter errors or incomplete content — thanks for your patience!</p>
             <p class="text-xs text-gray-600 mb-2">Feel free to share feedback at <a href="mailto:hulf.observatory@gmail.com" class="text-blue-600 hover:underline">hulf.observatory@gmail.com</a></p>
             <p class="text-xs mt-4">
-                <a href="#disclaimer-content" class="text-blue-600 hover:underline">Disclaimer</a>
+                <a href="disclaimer.html" class="text-blue-600 hover:underline">Disclaimer</a>
             </p>
-            <div id="disclaimer-content" class="text-gray-500 text-xs mt-2">
-                <p>The data presented on this website is for informational purposes only and may not be suitable for legal or commercial use without verification.</p>
-            </div>
         </div>
     </footer>
 
