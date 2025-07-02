@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hyderabad Urban Observatory</title>
+    <!-- Tailwind CSS for styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Inter (preferred) or Open Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Apply Inter font to the whole page */
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-white text-black flex flex-col min-h-screen">
+
+    <!-- Header Section -->
+    <header class="border-b border-gray-200 shadow-sm">
+        <div class="container mx-auto px-6 py-4 flex flex-col md:flex-row justify-between items-center">
+            <!-- Website Title -->
+            <h1 class="text-2xl font-bold text-gray-800 mb-4 md:mb-0">Hyderabad Urban Observatory</h1>
+            <!-- Navigation -->
+            <nav>
+                <ul class="flex space-x-6 sm:space-x-8 text-gray-700">
+                    <li><a href="#" class="hover:text-blue-600 transition-colors duration-200 ease-in-out font-medium">Home</a></li>
+                    <li><a href="#" class="hover:text-blue-600 transition-colors duration-200 ease-in-out font-medium">Data Sources</a></li>
+                    <li><a href="#" class="hover:text-blue-600 transition-colors duration-200 ease-in-out font-medium">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content Section -->
+    <main class="container mx-auto px-6 py-16 flex-grow">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
+            <!-- Spatial Data Observatory Box -->
+            <div class="bg-gray-50 p-8 rounded-xl border border-gray-200 shadow-lg hover:shadow-xl transition-shadow duration-300 ease-in-out cursor-pointer">
+                <h2 class="text-3xl font-semibold text-gray-800 mb-3">Spatial Data Observatory</h2>
+                <p class="text-gray-600 text-lg">Explore all layers of spatial data related to Hyderabad's urban development and planning.</p>
+            </div>
+
+            <!-- Proposed Land Use 2031 Box -->
+            <div class="bg-gray-50 p-8 rounded-xl border border-gray-200 shadow-lg hover:shadow-xl transition-shadow duration-300 ease-in-out cursor-pointer">
+                <h2 class="text-3xl font-semibold text-gray-800 mb-3">Proposed Land Use 2031</h2>
+                <p class="text-gray-600 text-lg">View and analyze the proposed land use plan for Hyderabad up to the year 2031.</p>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer Section -->
+    <footer class="bg-white text-gray-700 py-8 mt-16 border-t border-gray-200 shadow-sm">
+        <div class="container mx-auto px-6 text-center">
+            <p class="text-xs mb-2">This website is under continuous development. You may encounter errors or incomplete content — thanks for your patience!</p>
+            <p class="text-xs text-gray-600 mb-2">Feel free to share feedback at <a href="mailto:hulf.observatory@gmail.com" class="text-blue-600 hover:underline">hulf.observatory@gmail.com</a></p>
+            <p class="text-xs mt-4">
+                <a href="#disclaimer-content" class="text-blue-600 hover:underline">Disclaimer</a>
+            </p>
+            <div id="disclaimer-content" class="text-gray-500 text-xs mt-2">
+                <p>The data presented on this website is for informational purposes only and may not be suitable for legal or commercial use without verification.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Removed dynamic year as it's not needed with the new footer text.
+    </script>
+</body>
+</html>
