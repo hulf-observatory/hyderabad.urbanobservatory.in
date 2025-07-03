@@ -22,12 +22,16 @@
     <!-- Header Section -->
     <header class="border-b border-gray-200 shadow-sm">
         <div class="container mx-auto px-6 py-4 flex flex-col md:flex-row justify-between items-center">
-            <h1 class="text-2xl font-bold text-gray-900 mb-4 md:mb-0">Hyderabad Urban Observatory</h1>
+            <!-- Made the H1 title clickable to go to index.html -->
+            <h1 class="text-2xl font-bold text-gray-900 mb-4 md:mb-0">
+                <a href="index.html" class="hover:text-blue-600 transition-colors duration-200 ease-in-out">Hyderabad Urban Observatory</a>
+            </h1>
             <nav>
                 <ul class="flex space-x-6 sm:space-x-8 text-gray-700">
                     <li><a href="index.html" class="hover:text-blue-600 transition-colors duration-200 ease-in-out font-medium">Home</a></li>
                     <li><a href="data-sources.html" class="hover:text-blue-600 transition-colors duration-200 ease-in-out font-medium">Data Sources</a></li>
                     <li><a href="about.html" class="hover:text-blue-600 transition-colors duration-200 ease-in-out font-medium">About</a></li>
+                    <!-- Removed Disclaimer link from header navigation -->
                 </ul>
             </nav>
         </div>
@@ -44,7 +48,8 @@
         </div>
 
         <div class="bg-gray-50 p-4 rounded-xl shadow-lg w-full mb-12">
-            <iframe width="100%" height="488" frameborder="0" title="Felt Map" src="https://felt.com/embed/map/Spatial-Data-Portal-QW7y6lU1RtCxAng8m9BHJ7C?loc=18.016%2C78.348%2C8.14z" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+            <!-- Updated iframe src with the new URL -->
+            <iframe width="100%" height="488" frameborder="0" title="Felt Map" src="https://felt.com/embed/map/Spatial-Data-Portal-QW7y6lU1RtCxAng8m9BHJ7C?loc=17.341%2C78.348%2C8.14z" referrerpolicy="strict-origin-when-cross-origin"></iframe>
         </div>
 
         <!-- How-to-Use Guide Section -->
@@ -58,6 +63,8 @@
                 <li><strong>Pan:</strong> Click and drag the map to move around and explore different areas.</li>
                 <li><strong>Layer Control:</strong> Look for a layer control on the left side of the map to expand and toggle different data layers on and off. This allows you to customize what information is visible.</li>
                 <li><strong>Information Pop-ups:</strong> Click on specific features or areas on the map to reveal detailed information in a pop-up window. Select the layer on the left side panel to get respective pop-ups.</li>
+                <!-- Updated instruction for expand icon -->
+                <li><strong>Expand Map:</strong> Click on the expand icon on the top right of the map to see a bigger view.</li>
             </ul>
             <p class="text-gray-700 text-sm leading-relaxed mt-4">
                 For the best experience, use this on the desktop browser. If you encounter any issues, please write to us at <a href="mailto:hulf.observatory@gmail.com" class="text-blue-600 hover:underline">hulf.observatory@gmail.com</a>
