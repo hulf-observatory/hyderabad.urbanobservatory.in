@@ -61,10 +61,7 @@
     <!-- Footer Section -->
     <footer class="bg-white text-gray-700 py-6 mt-16 border-t border-gray-200 shadow-sm">
         <div class="container mx-auto px-6 text-center">
-            <!-- Page Visit Counter -->
-            <p class="text-xs text-gray-600 mb-2">
-                Page Visits: <span id="visit-count" class="font-bold">Loading...</span>
-            </p>
+            <!-- Page Visit Counter removed -->
             <!-- Combined the two lines into one -->
             <p class="text-xs text-gray-600 mb-2">This website is under continuous development. You may encounter errors or incomplete content — thanks for your patience! Feel free to share feedback at <a href="mailto:hulf.observatory@gmail.com" class="text-blue-600 hover:underline">hulf.observatory@gmail.com</a></p>
             <p class="text-xs mt-4">
@@ -74,85 +71,7 @@
     </footer>
 
     <script type="module">
-        // Import Firebase modules
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
-        import { getAuth, signInAnonymously, signInWithCustomToken } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
-        import { getFirestore, doc, getDoc, setDoc, increment } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
-
-        // Global variables provided by the Canvas environment
-        const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
-        const firebaseConfig = JSON.parse(typeof __firebase_config !== 'undefined' ? __firebase_config : '{}');
-        const initialAuthToken = typeof __initial_auth_token !== 'undefined' ? __initial_auth_token : null;
-
-        let db;
-        let auth;
-
-        // Function to initialize Firebase and handle authentication
-        async function initializeFirebase() {
-            try {
-                const app = initializeApp(firebaseConfig);
-                db = getFirestore(app);
-                auth = getAuth(app);
-
-                // Sign in using the provided custom token or anonymously
-                if (initialAuthToken) {
-                    await signInWithCustomToken(auth, initialAuthToken);
-                } else {
-                    await signInAnonymously(auth);
-                }
-                console.log("Firebase initialized and user authenticated.");
-                return true;
-            } catch (error) {
-                console.error("Error initializing Firebase or authenticating:", error);
-                document.getElementById('visit-count').textContent = 'Error loading count.';
-                return false;
-            }
-        }
-
-        // Function to update and display the page visit count
-        async function updatePageVisitCount() {
-            const visitCountElement = document.getElementById('visit-count');
-            if (!auth || !db || !auth.currentUser) {
-                console.error("Firebase not ready for Firestore operations.");
-                visitCountElement.textContent = 'Error loading count.';
-                return;
-            }
-
-            const userId = auth.currentUser.uid || crypto.randomUUID(); // Use authenticated UID or a random one
-            const counterDocRef = doc(db, `artifacts/${appId}/users/${userId}/page_visits`, 'main_page_counter');
-
-            try {
-                // Get the current count
-                const docSnap = await getDoc(counterDocRef);
-                let currentCount = 0;
-
-                if (docSnap.exists()) {
-                    currentCount = docSnap.data().count || 0;
-                }
-
-                // Increment the count
-                const newCount = currentCount + 1;
-
-                // Update the count in Firestore
-                await setDoc(counterDocRef, { count: newCount }, { merge: true });
-
-                // Display the new count
-                visitCountElement.textContent = newCount;
-                console.log("Page visit count updated:", newCount);
-
-            } catch (error) {
-                console.error("Error updating page visit count:", error);
-                visitCountElement.textContent = 'Error loading count.';
-            }
-        }
-
-        // Initialize Firebase and then update the count when the window loads
-        window.onload = async () => {
-            const firebaseReady = await initializeFirebase();
-            if (firebaseReady) {
-                updatePageVisitCount();
-            }
-        };
+        // Removed Firebase modules and page visit counter logic
     </script>
 </body>
 </html>
