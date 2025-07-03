@@ -28,9 +28,7 @@
             <nav>
                 <ul class="flex space-x-6 sm:space-x-8 text-gray-700">
                     <li><a href="index.html" class="hover:text-blue-600 transition-colors duration-200 ease-in-out font-medium">Home</a></li>
-                    <!-- Removed link to Spatial Data Portal from header -->
                     <li><a href="data-sources.html" class="hover:text-blue-600 transition-colors duration-200 ease-in-out font-medium">Data Sources</a></li>
-                    <!-- Renamed 'Contact' to 'About' -->
                     <li><a href="about.html" class="hover:text-blue-600 transition-colors duration-200 ease-in-out font-medium">About</a></li>
                 </ul>
             </nav>
@@ -39,20 +37,20 @@
 
     <!-- Main Content Section -->
     <main class="container mx-auto px-6 py-10 flex-grow">
-        <!-- Spatial Data Portal Box (Main Box) -->
+        <!-- Spatial Data Portal Box (Main Box) - Matched font size to text-2xl -->
         <a href="spatial-data-portal.html" class="block bg-gray-50 p-7 rounded-xl border border-gray-200 shadow-lg hover:shadow-xl transition-shadow duration-300 ease-in-out cursor-pointer mb-10">
-            <h2 class="text-3xl font-semibold text-gray-900 mb-3">Spatial Data Portal</h2>
+            <h2 class="text-2xl font-semibold text-gray-900 mb-3">Spatial Data Portal</h2>
             <p class="text-lg text-gray-700">Explore all layers of spatial data related to Hyderabad's urban development and planning.</p>
         </a>
 
-        <!-- Thematic Areas Section -->
+        <!-- Thematic Areas Section - Already text-2xl -->
         <h3 class="text-2xl font-bold text-gray-900 mb-6 text-left">Thematic Areas</h3>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-            <!-- Planning Section -->
+            <!-- Planning Section - Matched font size to text-2xl -->
             <div class="col-span-1">
                 <a href="proposed-land-use.html" class="block bg-gray-50 p-7 rounded-xl border border-gray-200 shadow-lg hover:shadow-xl transition-shadow duration-300 ease-in-out cursor-pointer">
                     <p class="text-sm font-bold text-gray-800 uppercase mb-2">Planning</p>
-                    <h2 class="text-xl font-semibold text-gray-900 mb-3">Proposed Land Use 2031</h2>
+                    <h2 class="text-2xl font-semibold text-gray-900 mb-3">Proposed Land Use 2031</h2>
                     <p class="text-base text-gray-700">View and analyze the proposed land use plan for Hyderabad up to the year 2031.</p>
                 </a>
             </div>
@@ -63,16 +61,98 @@
     <!-- Footer Section -->
     <footer class="bg-white text-gray-700 py-6 mt-16 border-t border-gray-200 shadow-sm">
         <div class="container mx-auto px-6 text-center">
-            <p class="text-xs mb-2">This website is under continuous development. You may encounter errors or incomplete content — thanks for your patience!</p>
-            <p class="text-xs text-gray-600 mb-2">Feel free to share feedback at <a href="mailto:hulf.observatory@gmail.com" class="text-blue-600 hover:underline">hulf.observatory@gmail.com</a></p>
+            <!-- Page Visit Counter -->
+            <p class="text-xs text-gray-600 mb-2">
+                Page Visits: <span id="visit-count" class="font-bold">Loading...</span>
+            </p>
+            <!-- Combined the two lines into one -->
+            <p class="text-xs text-gray-600 mb-2">This website is under continuous development. You may encounter errors or incomplete content — thanks for your patience! Feel free to share feedback at <a href="mailto:hulf.observatory@gmail.com" class="text-blue-600 hover:underline">hulf.observatory@gmail.com</a></p>
             <p class="text-xs mt-4">
                 <a href="disclaimer.html" class="text-blue-600 hover:underline">Disclaimer</a>
             </p>
         </div>
     </footer>
 
-    <script>
-        // Removed dynamic year as it's not needed with the new footer text.
+    <script type="module">
+        // Import Firebase modules
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { getAuth, signInAnonymously, signInWithCustomToken } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import { getFirestore, doc, getDoc, setDoc, increment } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
+        // Global variables provided by the Canvas environment
+        const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
+        const firebaseConfig = JSON.parse(typeof __firebase_config !== 'undefined' ? __firebase_config : '{}');
+        const initialAuthToken = typeof __initial_auth_token !== 'undefined' ? __initial_auth_token : null;
+
+        let db;
+        let auth;
+
+        // Function to initialize Firebase and handle authentication
+        async function initializeFirebase() {
+            try {
+                const app = initializeApp(firebaseConfig);
+                db = getFirestore(app);
+                auth = getAuth(app);
+
+                // Sign in using the provided custom token or anonymously
+                if (initialAuthToken) {
+                    await signInWithCustomToken(auth, initialAuthToken);
+                } else {
+                    await signInAnonymously(auth);
+                }
+                console.log("Firebase initialized and user authenticated.");
+                return true;
+            } catch (error) {
+                console.error("Error initializing Firebase or authenticating:", error);
+                document.getElementById('visit-count').textContent = 'Error loading count.';
+                return false;
+            }
+        }
+
+        // Function to update and display the page visit count
+        async function updatePageVisitCount() {
+            const visitCountElement = document.getElementById('visit-count');
+            if (!auth || !db || !auth.currentUser) {
+                console.error("Firebase not ready for Firestore operations.");
+                visitCountElement.textContent = 'Error loading count.';
+                return;
+            }
+
+            const userId = auth.currentUser.uid || crypto.randomUUID(); // Use authenticated UID or a random one
+            const counterDocRef = doc(db, `artifacts/${appId}/users/${userId}/page_visits`, 'main_page_counter');
+
+            try {
+                // Get the current count
+                const docSnap = await getDoc(counterDocRef);
+                let currentCount = 0;
+
+                if (docSnap.exists()) {
+                    currentCount = docSnap.data().count || 0;
+                }
+
+                // Increment the count
+                const newCount = currentCount + 1;
+
+                // Update the count in Firestore
+                await setDoc(counterDocRef, { count: newCount }, { merge: true });
+
+                // Display the new count
+                visitCountElement.textContent = newCount;
+                console.log("Page visit count updated:", newCount);
+
+            } catch (error) {
+                console.error("Error updating page visit count:", error);
+                visitCountElement.textContent = 'Error loading count.';
+            }
+        }
+
+        // Initialize Firebase and then update the count when the window loads
+        window.onload = async () => {
+            const firebaseReady = await initializeFirebase();
+            if (firebaseReady) {
+                updatePageVisitCount();
+            }
+        };
     </script>
 </body>
 </html>
