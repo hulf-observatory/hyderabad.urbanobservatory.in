@@ -6,51 +6,54 @@
     <title>Hyderabad Urban Observatory</title>
     <!-- Tailwind CSS for styling -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts: Inter (preferred) or Open Sans -->
+    <!-- Google Fonts: DM Sans (matching arindamjana.com/blog aesthetic) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
     <style>
-        /* Apply Inter font to the whole page */
+        /* Apply DM Sans font to the whole page and a light cream background */
         body {
-            font-family: 'Inter', sans-serif;
+            font-family: 'DM Sans', sans-serif;
+            background-color: #fcfbf8; /* A light cream/off-white, similar to arindamjana.com/blog */
         }
     </style>
 </head>
-<body class="bg-white text-black flex flex-col min-h-screen">
+<body class="text-black flex flex-col min-h-screen">
 
     <!-- Header Section -->
-    <header class="border-b border-gray-200 shadow-sm">
-        <div class="container mx-auto px-6 py-4 flex flex-col md:flex-row justify-between items-center">
-            <!-- Website Title -->
-            <h1 class="text-2xl font-bold text-gray-900 mb-4 md:mb-0">Hyderabad Urban Observatory</h1>
+    <header class="border-b border-gray-100 shadow-md bg-white">
+        <div class="container mx-auto px-8 py-5 flex flex-col md:flex-row justify-between items-center">
+            <!-- Website Title - Now clickable to go to the main page -->
+            <h1 class="text-2xl font-bold text-gray-900 mb-4 md:mb-0">
+                <a href="index.html" class="hover:text-red-500 transition-colors duration-200 ease-in-out">Hyderabad Urban Observatory</a>
+            </h1>
             <!-- Navigation -->
             <nav>
-                <ul class="flex space-x-6 sm:space-x-8 text-gray-700">
-                    <li><a href="index.html" class="hover:text-blue-600 transition-colors duration-200 ease-in-out font-medium">Home</a></li>
-                    <li><a href="data-sources.html" class="hover:text-blue-600 transition-colors duration-200 ease-in-out font-medium">Data Sources</a></li>
-                    <li><a href="about.html" class="hover:text-blue-600 transition-colors duration-200 ease-in-out font-medium">About</a></li>
+                <ul class="flex space-x-8 text-gray-700">
+                    <li><a href="index.html" class="hover:text-red-500 transition-colors duration-200 ease-in-out font-medium">Home</a></li>
+                    <li><a href="data-sources.html" class="hover:text-red-500 transition-colors duration-200 ease-in-out font-medium">Data Sources</a></li>
+                    <li><a href="about.html" class="hover:text-red-500 transition-colors duration-200 ease-in-out font-medium">About</a></li>
                 </ul>
             </nav>
         </div>
     </header>
 
     <!-- Main Content Section -->
-    <main class="container mx-auto px-6 py-10 flex-grow">
-        <!-- Spatial Data Portal Box (Main Box) - Matched font size to text-2xl -->
-        <a href="spatial-data-portal.html" class="block bg-gray-50 p-7 rounded-xl border border-gray-200 shadow-lg hover:shadow-xl transition-shadow duration-300 ease-in-out cursor-pointer mb-10">
-            <h2 class="text-2xl font-semibold text-gray-900 mb-3">Spatial Data Portal</h2>
+    <main class="container mx-auto px-8 py-12 flex-grow">
+        <!-- Spatial Data Portal Box (Main Box) -->
+        <a href="spatial-data-portal.html" class="block bg-white p-8 rounded-xl border border-gray-100 shadow-md hover:shadow-lg hover:border-red-300 transition-all duration-300 ease-in-out cursor-pointer mb-12">
+            <h2 class="text-2xl font-semibold text-gray-900 mb-4">Spatial Data Portal</h2>
             <p class="text-lg text-gray-700">Explore all layers of spatial data related to Hyderabad's urban development and planning.</p>
         </a>
 
-        <!-- Thematic Areas Section - Already text-2xl -->
-        <h3 class="text-2xl font-bold text-gray-900 mb-6 text-left">Thematic Areas</h3>
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-            <!-- Planning Section - Matched font size to text-2xl -->
+        <!-- Thematic Areas Section -->
+        <h3 class="text-2xl font-bold text-gray-900 mb-8 text-left">Thematic Areas</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Planning Section -->
             <div class="col-span-1">
-                <a href="proposed-land-use.html" class="block bg-gray-50 p-7 rounded-xl border border-gray-200 shadow-lg hover:shadow-xl transition-shadow duration-300 ease-in-out cursor-pointer">
-                    <p class="text-sm font-bold text-gray-800 uppercase mb-2">Planning</p>
-                    <h2 class="text-2xl font-semibold text-gray-900 mb-3">Proposed Land Use 2031</h2>
+                <a href="proposed-land-use.html" class="block bg-white p-8 rounded-xl border border-gray-100 shadow-md hover:shadow-lg hover:border-red-300 transition-all duration-300 ease-in-out cursor-pointer">
+                    <p class="text-sm font-bold text-gray-800 mb-3">Planning</p>
+                    <h2 class="text-2xl font-semibold text-gray-900 mb-4">Proposed Land Use 2031</h2>
                     <p class="text-base text-gray-700">View and analyze the proposed land use plan for Hyderabad up to the year 2031.</p>
                 </a>
             </div>
@@ -59,11 +62,11 @@
     </main>
 
     <!-- Footer Section -->
-    <footer class="bg-white text-gray-700 py-6 mt-16 border-t border-gray-200 shadow-sm">
-        <div class="container mx-auto px-6 text-center">
-            <!-- Page Visit Counter removed -->
-            <!-- Combined the two lines into one -->
-            <p class="text-xs text-gray-600 mb-2">This website is under continuous development. You may encounter errors or incomplete content — thanks for your patience! Feel free to share feedback at <a href="mailto:hulf.observatory@gmail.com" class="text-blue-600 hover:underline">hulf.observatory@gmail.com</a></p>
+    <footer class="bg-white text-gray-700 py-8 mt-20 border-t border-gray-100 shadow-sm">
+        <div class="container mx-auto px-8 text-center">
+            <p class="text-xs text-gray-600 mb-3">This website is under continuous development. You may encounter errors or incomplete content — thanks for your patience! Feel free to share feedback at <a href="mailto:hulf.observatory@gmail.com" class="text-blue-600 hover:underline">hulf.observatory@gmail.com</a></p>
+            <!-- Subtle red line divider -->
+            <div class="w-16 h-px bg-red-300 mx-auto my-4"></div>
             <p class="text-xs mt-4">
                 <a href="disclaimer.html" class="text-blue-600 hover:underline">Disclaimer</a>
             </p>
