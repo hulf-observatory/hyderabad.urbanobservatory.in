@@ -17,6 +17,18 @@
             background-color: #fcfbf8; 
             scroll-behavior: smooth; /* For smooth scrolling to anchor links */
         }
+        /* Custom styles for the thematic cards to ensure consistent initial height */
+        .thematic-card {
+            min-height: 240px; /* Adjusted to ensure consistent height for all cards */
+            cursor: pointer; /* Indicate that the entire card is clickable */
+            display: flex; /* Use flexbox for better control over content alignment */
+            flex-direction: column; /* Stack content vertically */
+            justify-content: space-between; /* Push toggle button to the bottom */
+        }
+        /* Ensure links within the card are still clickable */
+        .thematic-card a {
+            cursor: pointer;
+        }
     </style>
 </head>
 <body class="text-black flex flex-col min-h-screen">
@@ -28,7 +40,7 @@
             <div class="flex items-center space-x-2">
                 <img src="https://github.com/hulf-observatory/hyderabad.urbanobservatory.in/blob/697d2897c60474dd313e091b31b4fda2c37700a8/images/logo.png?raw=true" alt="Observatory Logo" class="h-10 w-10">
                 <h1 class="text-2xl font-bold text-gray-900">
-                    <a href="index.html" class="hover:text-red-500 transition-colors duration-200 ease-in-out">Hyderabad Urban Observatory</a>
+                    <a href="index.html" class="hover:underline transition-colors duration-200 ease-in-out">Hyderabad Urban Observatory</a>
                 </h1>
             </div>
             
@@ -42,10 +54,10 @@
             <!-- Collapsible Navigation (All menu items - hidden by default, revealed by burger) -->
             <nav id="collapsible-nav" class="hidden absolute top-full right-6 bg-white border border-gray-100 shadow-md p-4 mt-2 rounded-lg z-10"> <!-- Adjusted left-6 back to right-6 -->
                 <ul class="flex flex-col space-y-4 text-gray-700 items-end"> <!-- Changed items-start back to items-end -->
-                    <li><a href="index.html" class="hover:text-red-500 transition-colors duration-200 ease-in-out font-medium">Home</a></li>
-                    <li><a href="#thematic-areas-section" class="hover:text-red-500 transition-colors duration-200 ease-in-out font-medium">Thematic Areas</a></li>
-                    <li><a href="data-sources.html" class="hover:text-red-500 transition-colors duration-200 ease-in-out font-medium">Data Sources</a></li>
-                    <li><a href="about.html" class="hover:text-red-500 transition-colors duration-200 ease-in-out font-medium">About</a></li>
+                    <li><a href="index.html" class="hover:underline transition-colors duration-200 ease-in-out font-medium">Home</a></li>
+                    <li><a href="#thematic-areas-section" class="hover:underline transition-colors duration-200 ease-in-out font-medium">Thematic Areas</a></li>
+                    <li><a href="data-sources.html" class="hover:underline transition-colors duration-200 ease-in-out font-medium">Data Sources</a></li>
+                    <li><a href="about.html" class="hover:underline transition-colors duration-200 ease-in-out font-medium">About</a></li>
                 </ul>
             </nav>
         </div>
@@ -56,7 +68,7 @@
         <!-- Spatial Data Repository Map Section -->
         <div class="flex justify-between items-baseline mb-4">
             <h2 class="text-2xl font-bold text-gray-900 text-left">
-                <a href="spatial-data-repository.html" class="hover:text-red-500 transition-colors duration-200 ease-in-out">Spatial Data Repository</a>
+                <a href="spatial-data-repository.html" class="hover:underline transition-colors duration-200 ease-in-out">Spatial Data Repository</a>
             </h2>
             <!-- Removed the "How to Use This Map" hyperlink -->
         </div>
@@ -64,7 +76,7 @@
         <div class="bg-gray-50 p-4 rounded-xl shadow-lg w-full mb-12">
             <!-- Moved descriptive text above the map and combined "best experience" line -->
             <p class="text-gray-700 text-sm mb-4">
-                Explore all the spatial data layers on this map. Toggle the layers on the left panel to turn them on and off. To explore the layers on a larger map and for detailed instructions on how to use the map, visit the <a href="spatial-data-repository.html" class="hover:text-red-500 underline">Spatial Data Repository</a>. For the best experience, please view this map on a desktop browser.
+                Explore all the spatial data layers on this map. Toggle the layers on the left panel to turn them on and off. To explore the layers on a larger map and for detailed instructions on how to use the map, visit the <a href="spatial-data-repository.html" class="underline">Spatial Data Repository</a>. For the best experience, please view this map on a desktop browser.
             </p>
             <!-- Updated iframe src and height -->
             <iframe width="100%" height="400" frameborder="0" title="Felt Map" src="https://felt.com/embed/map/Spatial-Data-Repository-QW7y6lU1RtCxAng8m9BHJ7C?loc=17.341%2C78.348%2C8.14z" referrerpolicy="strict-origin-when-cross-origin"></iframe>
@@ -73,32 +85,197 @@
         <!-- Thematic Areas Section -->
         <h3 id="thematic-areas-section" class="text-2xl font-bold text-gray-900 mb-8 text-left">Thematic Areas</h3>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <!-- Planning Section -->
+            <!-- Environmental Impact Section -->
             <div class="col-span-1">
-                <a href="proposed-land-use.html" class="block bg-white p-8 rounded-xl border border-gray-100 shadow-md hover:shadow-lg hover:border-red-300 transition-all duration-300 ease-in-out cursor-pointer">
-                    <p class="text-sm font-bold text-gray-800 mb-3">PLANNING</p>
-                    <h2 class="text-2xl font-semibold text-gray-900 mb-4">Proposed Land Use 2031</h2>
-                    <p class="text-base text-gray-700">View and analyze the proposed land use plan for Hyderabad up to the year 2031.</p>
-                </a>
-            </div>
-            <!-- Environmental Impact Section - Added based on PDF -->
-            <div class="col-span-1">
-                <a href="2025_KGF_change_analysis.html" class="block bg-white p-8 rounded-xl border border-gray-100 shadow-md hover:shadow-lg hover:border-red-300 transition-all duration-300 ease-in-out cursor-pointer">
+                <div class="thematic-card bg-white p-8 rounded-xl border border-gray-100 shadow-md hover:shadow-lg hover:border-red-300 transition-all duration-300 ease-in-out">
                     <p class="text-sm font-bold text-gray-800 mb-3">ENVIRONMENTAL IMPACT</p>
-                    <h2 class="text-2xl font-semibold text-gray-900 mb-4">Kancha Gachibowli Forest Change Analysis</h2>
-                    <p class="text-base text-gray-700">An analysis of green cover loss (approx. 102 Acres) and land area disturbed (approx. 115 Acres) in Kancha Gachibowli between March and April 2025, based on Sentinel-2 imagery.</p>
-                </a>
+                    <h2 class="text-2xl font-semibold text-gray-900 mb-4">
+                        <a href="2025_KGF_change_analysis.html" class="hover:underline transition-colors duration-200 ease-in-out">Kancha Gachibowli Forest Change Analysis</a>
+                    </h2>
+                    
+                    <div class="flex justify-end mt-auto">
+                        <button class="toggle-button text-gray-700 text-2xl font-bold focus:outline-none bg-white rounded-full w-8 h-8 flex items-center justify-center border border-gray-200 shadow-sm">
+                            +
+                        </button>
+                    </div>
+
+                    <div class="full-description hidden mt-4">
+                        <p class="text-base text-gray-700">This analysis focuses on green cover loss (approx. 102 Acres) and land area disturbed (approx. 115 Acres) in Kancha Gachibowli between March and April 2025, based on Sentinel-2 imagery. <a href="2025_KGF_change_analysis.html" class="underline">Click here to explore</a></p>
+                    </div>
+                </div>
             </div>
-            <!-- Other thematic boxes can be added here if needed in the future -->
+            <!-- Hyderabad Municipal Survey Section -->
+            <div class="col-span-1">
+                <div class="thematic-card bg-white p-8 rounded-xl border border-gray-100 shadow-md hover:shadow-lg hover:border-red-300 transition-all duration-300 ease-in-out">
+                    <p class="text-sm font-bold text-gray-800 mb-3">HISTORICAL DATA</p>
+                    <h2 class="text-2xl font-semibold text-gray-900 mb-4">
+                        <a href="#" class="hover:underline transition-colors duration-200 ease-in-out">Hyderabad Municipal Survey, 1915 by Leonard Munn</a>
+                    </h2>
+                    
+                    <div class="flex justify-end mt-auto">
+                        <button class="toggle-button text-gray-700 text-2xl font-bold focus:outline-none bg-white rounded-full w-8 h-8 flex items-center justify-center border border-gray-200 shadow-sm">
+                            +
+                        </button>
+                    </div>
+
+                    <div class="full-description hidden mt-4">
+                        <p class="text-base text-gray-700">Municipal Survey conducted by Leonard Munn between 1911 and 1913 after the 1908 historical floods. <a href="#" class="underline">Click here to explore</a></p>
+                    </div>
+                </div>
+            </div>
+            <!-- Planning Section (Moved to End) -->
+            <div class="col-span-1">
+                <div class="thematic-card bg-white p-8 rounded-xl border border-gray-100 shadow-md hover:shadow-lg hover:border-red-300 transition-all duration-300 ease-in-out">
+                    <p class="text-sm font-bold text-gray-800 mb-3">
+                        PLANNING
+                        <span class="text-gray-400 italic text-sm ml-2 font-light">Coming Soon</span>
+                    </p>
+                    <h2 class="text-2xl font-semibold text-gray-900 mb-4">
+                        Proposed Land Use 2031
+                    </h2>
+                    
+                    <div class="flex justify-end mt-auto"> <!-- Push toggle to bottom right -->
+                        <button class="toggle-button text-gray-700 text-2xl font-bold focus:outline-none bg-white rounded-full w-8 h-8 flex items-center justify-center border border-gray-200 shadow-sm">
+                            +
+                        </button>
+                    </div>
+
+                    <div class="full-description hidden mt-4">
+                        <p class="text-base text-gray-700">Discover how the 2031 Master Plan envisions the city’s future by exploring the proposed land use map, shown here as a layer over the current basemaps.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- New Coming Soon Tiles -->
+            <!-- Built-up Area Growth (1990–2020) -->
+            <div class="col-span-1">
+                <div class="thematic-card bg-white p-8 rounded-xl border border-gray-100 shadow-md hover:shadow-lg hover:border-red-300 transition-all duration-300 ease-in-out">
+                    <p class="text-sm font-bold text-gray-800 mb-3">
+                        DATA VISUALIZATION
+                        <span class="text-gray-400 italic text-sm ml-2 font-light">Coming Soon</span>
+                    </p>
+                    <h2 class="text-2xl font-semibold text-gray-900 mb-4">
+                        Built-up Area Growth (1990–2020)
+                    </h2>
+                    
+                    <div class="flex justify-end mt-auto">
+                        <button class="toggle-button text-gray-700 text-2xl font-bold focus:outline-none bg-white rounded-full w-8 h-8 flex items-center justify-center border border-gray-200 shadow-sm">
+                            +
+                        </button>
+                    </div>
+
+                    <div class="full-description hidden mt-4">
+                        <p class="text-base text-gray-700">Tracks the spatial expansion of Hyderabad over three decades.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Water Supply Timings and Inequality -->
+            <div class="col-span-1">
+                <div class="thematic-card bg-white p-8 rounded-xl border border-gray-100 shadow-md hover:shadow-lg hover:border-red-300 transition-all duration-300 ease-in-out">
+                    <p class="text-sm font-bold text-gray-800 mb-3">
+                        URBAN SERVICES
+                        <span class="text-gray-400 italic text-sm ml-2 font-light">Coming Soon</span>
+                    </p>
+                    <h2 class="text-2xl font-semibold text-gray-900 mb-4">
+                        Water Supply Timings and Inequality
+                    </h2>
+                    
+                    <div class="flex justify-end mt-auto">
+                        <button class="toggle-button text-gray-700 text-2xl font-bold focus:outline-none bg-white rounded-full w-8 h-8 flex items-center justify-center border border-gray-200 shadow-sm">
+                            +
+                        </button>
+                    </div>
+
+                    <div class="full-description hidden mt-4">
+                        <p class="text-base text-gray-700">Maps disparities in water access and timing across neighborhoods.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2011 Census Ward Maps -->
+            <div class="col-span-1">
+                <div class="thematic-card bg-white p-8 rounded-xl border border-gray-100 shadow-md hover:shadow-lg hover:border-red-300 transition-all duration-300 ease-in-out">
+                    <p class="text-sm font-bold text-gray-800 mb-3">
+                        DEMOGRAPHICS
+                        <span class="text-gray-400 italic text-sm ml-2 font-light">Coming Soon</span>
+                    </p>
+                    <h2 class="text-2xl font-semibold text-gray-900 mb-4">
+                        2011 Census Ward Maps
+                    </h2>
+                    
+                    <div class="flex justify-end mt-auto">
+                        <button class="toggle-button text-gray-700 text-2xl font-bold focus:outline-none bg-white rounded-full w-8 h-8 flex items-center justify-center border border-gray-200 shadow-sm">
+                            +
+                        </button>
+                    </div>
+
+                    <div class="full-description hidden mt-4">
+                        <p class="text-base text-gray-700">Ward boundaries and demographic data from the 2011 Census.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Changes in Hyderabad's Administrative Boundaries -->
+            <div class="col-span-1">
+                <div class="thematic-card bg-white p-8 rounded-xl border border-gray-100 shadow-md hover:shadow-lg hover:border-red-300 transition-all duration-300 ease-in-out">
+                    <p class="text-sm font-bold text-gray-800 mb-3">
+                        GOVERNANCE
+                        <span class="text-gray-400 italic text-sm ml-2 font-light">Coming Soon</span>
+                    </p>
+                    <h2 class="text-2xl font-semibold text-gray-900 mb-4">
+                        Changes in Hyderabad's Administrative Boundaries
+                    </h2>
+                    
+                    <div class="flex justify-end mt-auto">
+                        <button class="toggle-button text-gray-700 text-2xl font-bold focus:outline-none bg-white rounded-full w-8 h-8 flex items-center justify-center border border-gray-200 shadow-sm">
+                            +
+                        </button>
+                    </div>
+
+                    <div class="full-description hidden mt-4">
+                        <p class="text-base text-gray-700">Shows how city boundaries have shifted over time.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Industrial Timeline of Hyderabad (1817–2010) -->
+            <div class="col-span-1">
+                <div class="thematic-card bg-white p-8 rounded-xl border border-gray-100 shadow-md hover:shadow-lg hover:border-red-300 transition-all duration-300 ease-in-out">
+                    <p class="text-sm font-bold text-gray-800 mb-3">
+                        ECONOMIC HISTORY
+                        <span class="text-gray-400 italic text-sm ml-2 font-light">Coming Soon</span>
+                    </p>
+                    <h2 class="text-2xl font-semibold text-gray-900 mb-4">
+                        Industrial Timeline of Hyderabad (1817–2010)
+                    </h2>
+                    
+                    <div class="flex justify-end mt-auto">
+                        <button class="toggle-button text-gray-700 text-2xl font-bold focus:outline-none bg-white rounded-full w-8 h-8 flex items-center justify-center border border-gray-200 shadow-sm">
+                            +
+                        </button>
+                    </div>
+
+                    <div class="full-description hidden mt-4">
+                        <p class="text-base text-gray-700">A historical overview of industrial development in the city.</p>
+                    </div>
+                </div>
+            </div>
+            
         </div>
     </main>
+
+    <!-- Text below thematic areas -->
+    <div class="container mx-auto px-6 py-4 text-center text-gray-400 italic text-sm font-light">
+        <p>This section will be continuously updated with more thematic areas and data visualizations.</p>
+    </div>
 
     <!-- Footer Section -->
     <footer class="bg-white text-gray-700 py-4 mt-12 border-t border-gray-100 shadow-sm">
         <div class="container mx-auto px-8 text-center">
-            <p class="text-xs text-gray-600 mb-2">This website is under continuous development. You may encounter errors or incomplete content. Share your feedback at <a href="mailto:hulf.observatory@gmail.com" class="hover:text-red-500 underline">hulf.observatory@gmail.com</a></p>
+            <p class="text-xs text-gray-600 mb-2">This website is under continuous development. You may encounter errors or incomplete content. Share your feedback at <a href="mailto:hulf.observatory@gmail.com" class="hover:underline">hulf.observatory@gmail.com</a></p>
             <p class="text-xs mt-2">
-                <a href="disclaimer.html" class="hover:text-red-500 underline">Disclaimer</a>
+                <a href="disclaimer.html" class="hover:underline">Disclaimer</a>
             </p>
         </div>
     </footer>
@@ -122,6 +299,45 @@
                     });
                 });
             }
+
+            // JavaScript for handling the thematic area description toggles
+            const thematicBoxes = document.querySelectorAll('.thematic-card');
+
+            thematicBoxes.forEach(box => {
+                const toggleButton = box.querySelector('.toggle-button');
+                const fullDescription = box.querySelector('.full-description');
+                // const titleLink = box.querySelector('h2 a'); // No longer needed for all boxes
+
+                if (toggleButton && fullDescription) { 
+                    // Add click listener to the entire box
+                    box.addEventListener('click', (event) => {
+                        // Prevent expansion/collapse if a link (title or "explore" link) is clicked
+                        if (event.target.tagName === 'A') { 
+                            return; 
+                        }
+
+                        fullDescription.classList.toggle('hidden');
+
+                        if (fullDescription.classList.contains('hidden')) {
+                            toggleButton.textContent = '+';
+                        } else {
+                            toggleButton.textContent = '-';
+                        }
+                    });
+
+                    // Ensure the toggle button still works independently
+                    toggleButton.addEventListener('click', (event) => {
+                        event.stopPropagation(); 
+                        fullDescription.classList.toggle('hidden');
+
+                        if (fullDescription.classList.contains('hidden')) {
+                            toggleButton.textContent = '+';
+                        } else {
+                            toggleButton.textContent = '-';
+                        }
+                    });
+                }
+            });
         });
     </script>
 </body>
