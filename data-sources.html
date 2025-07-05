@@ -19,10 +19,7 @@
         }
         /* Style for the plus/minus icon */
         .toggle-icon {
-            transition: transform 0.3s ease-in-out;
-        }
-        .rotated {
-            transform: rotate(45deg);
+            /* Removed transition and rotated class as per new requirement */
         }
         /* Custom styling for the toggle button to remove default button styles */
         .toggle-details {
@@ -68,7 +65,7 @@
 
     <!-- Main Content Section -->
     <main class="container mx-auto px-6 py-12 flex-grow">
-        <h2 class="text-3xl font-bold text-gray-900 mb-8 text-left">Data Sources</h2>
+        <h2 class="text-3xl font-bold text-gray-900 mb-2 text-left">Data Sources</h2>
         
         <!-- Outer border box for data sources, similar to People section -->
         <div class="w-full bg-gray-50 p-5 rounded-xl border border-gray-200 shadow-lg">
@@ -297,7 +294,6 @@
                     hyperlink: "https://tgrac.telangana.gov.in/trac/",
                     details: "accessed and processed at Hyderabad Urban Lab by Teja Malladi"
                 }
-                // Removed "2BHK Plot Location"
             ];
 
             // Sort dataSources alphabetically by dataset name
@@ -318,21 +314,31 @@
 
             dataSources.forEach(source => {
                 const card = document.createElement('div');
-                // Updated card styling for a more prominent look, similar to a "people" section style
                 card.className = 'col-span-1 bg-white p-6 rounded-xl border-2 border-gray-200 shadow-lg hover:shadow-xl hover:border-red-400 transition-all duration-300 ease-in-out cursor-pointer flex flex-col relative';
 
                 // Check if hyperlink is empty, and if so, don't create a link for the source
-                const sourceHtml = source.hyperlink ?
-                    `<a href="${source.hyperlink}" target="_blank" rel="noopener noreferrer" class="text-sm underline text-gray-700 hover:text-red-500">${source.source}</a>` : // Removed text-blue-600, kept underline, added hover color
-                    `<span class="text-sm text-gray-700">${source.source}</span>`; // Reduced font size for source text
+                let sourceHtml;
+                if (source.dataset.includes("GHMC Circle Boundary") || source.dataset.includes("GHMC Zone Boundary")) {
+                    // Handle combined sources for GHMC Circle/Zone Boundary
+                    const parts = source.source.split(' and ');
+                    const links = source.hyperlink.split(' and ');
+                    sourceHtml = parts.map((part, index) => {
+                        const link = links[index] ? `<a href="${links[index].trim()}" target="_blank" rel="noopener noreferrer" class="text-sm underline text-gray-700 hover:text-red-500">${part.trim()}</a>` : `<span class="text-sm text-gray-700">${part.trim()}</span>`;
+                        return link;
+                    }).join(' and ');
+                } else {
+                    sourceHtml = source.hyperlink ?
+                        `<a href="${source.hyperlink}" target="_blank" rel="noopener noreferrer" class="text-sm underline text-gray-700 hover:text-red-500">${source.source}</a>` :
+                        `<span class="text-sm text-gray-700">${source.source}</span>`;
+                }
 
-                const detailsText = source.details && source.details.trim() !== '' ? source.details : 'To be updated.'; // Add "To be updated."
+                const detailsText = source.details && source.details.trim() !== '' ? source.details : 'To be updated.';
 
                 card.innerHTML = `
-                    <h3 class="text-lg font-semibold text-gray-900 mb-2">${source.dataset}</h3> <!-- Reduced font size -->
-                    <p class="text-sm text-gray-700 mb-4">${sourceHtml}</p> <!-- Reduced font size -->
+                    <h3 class="text-lg font-semibold text-gray-900 mb-2">${source.dataset}</h3>
+                    <p class="text-sm text-gray-700 mb-4">${sourceHtml}</p>
                     <div class="relative mt-auto">
-                        <div class="additional-details hidden text-sm text-gray-700 bg-gray-50 p-4 rounded-lg border border-gray-100 mt-4"> <!-- Reduced font size -->
+                        <div class="additional-details hidden text-sm text-gray-700 bg-gray-50 p-4 rounded-lg border border-gray-100 mt-4">
                             <p>${detailsText}</p>
                         </div>
                         <button class="toggle-details absolute bottom-0 right-0 w-8 h-8 flex items-center justify-center">
@@ -349,11 +355,10 @@
 
                 toggleButton.addEventListener('click', () => {
                     additionalDetails.classList.toggle('hidden');
-                    toggleIcon.classList.toggle('rotated');
                     if (additionalDetails.classList.contains('hidden')) {
                         toggleIcon.textContent = '+';
                     } else {
-                        toggleIcon.textContent = 'x';
+                        toggleIcon.textContent = '-';
                     }
                 });
             });
