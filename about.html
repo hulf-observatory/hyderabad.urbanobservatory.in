@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Hyderabad Urban Observatory</title>
+    <!-- Tailwind CSS for styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: DM Sans (matching index.html) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
+    <style>
+        /* Apply DM Sans font to the whole page and a light cream background */
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background-color: #fcfbf8; 
+            scroll-behavior: smooth; /* For smooth scrolling to anchor links */
+        }
+    </style>
+</head>
+<body class="text-black flex flex-col min-h-screen">
+
+    <!-- Header Section (matching index.html) -->
+    <header class="border-b border-gray-100 shadow-md bg-white relative">
+        <div class="container mx-auto px-6 py-5 flex justify-between items-center">
+            <!-- Website Title and Logo (matching index.html) -->
+            <div class="flex items-center space-x-2">
+                <img src="https://github.com/hulf-observatory/hyderabad.urbanobservatory.in/blob/697d2897c60474dd313e091b31b4fda2c37700a8/images/logo.png?raw=true" alt="Observatory Logo" class="h-10 w-10">
+                <h1 class="text-2xl font-bold text-gray-900">
+                    <a href="index.html" class="hover:text-red-500 transition-colors duration-200 ease-in-out">Hyderabad Urban Observatory</a>
+                </h1>
+            </div>
+            
+            <!-- Burger menu button (matching index.html) -->
+            <button id="menu-button" class="text-gray-700 focus:outline-none focus:text-red-500 transition-colors duration-200 ease-in-out">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
+
+            <!-- Collapsible Navigation (All menu items - matching index.html) -->
+            <nav id="collapsible-nav" class="hidden absolute top-full right-6 bg-white border border-gray-100 shadow-md p-4 mt-2 rounded-lg z-10">
+                <ul class="flex flex-col space-y-4 text-gray-700 items-end">
+                    <li><a href="index.html" class="hover:text-red-500 transition-colors duration-200 ease-in-out font-medium">Home</a></li>
+                    <li><a href="index.html#thematic-areas-section" class="hover:text-red-500 transition-colors duration-200 ease-in-out font-medium">Thematic Areas</a></li>
+                    <li><a href="data-sources.html" class="hover:text-red-500 transition-colors duration-200 ease-in-out font-medium">Data Sources</a></li>
+                    <li><a href="about.html" class="hover:text-red-500 transition-colors duration-200 ease-in-out font-medium">About</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content Section for About Page -->
+    <main class="container mx-auto px-6 py-12 flex-grow">
+        <h2 class="text-2xl font-bold text-gray-900 mb-8 text-left">About Hyderabad Urban Observatory</h2>
+        <div class="bg-gray-50 p-5 rounded-xl border border-gray-200 shadow-lg w-full mb-8">
+            <p class="text-base leading-relaxed mb-2">
+                The Urban Observatory at <a href="https://hydlab.in/" class="hover:text-red-500 underline">Hyderabad Urban Lab</a> is envisaged as a set of projects around:
+            </p>
+            <ul class="list-disc text-base leading-relaxed mb-4 space-y-1 pl-10">
+                <li>data repositories, archives and libraries;</li>
+                <li>research and advocacy;</li>
+                <li>physical and social interventions around communities and places.</li>
+            </ul>
+            <p class="text-base leading-relaxed mb-2">
+                Each of these projects is to feed and support the other projects. For example, data repositories inform research and advocacy and enable designed interventions. Likewise, interventions will lead to new research and new data.
+            </p>
+            <p class="text-base leading-relaxed mb-2">
+                We look at the city as a place that is constantly in a flux, where agendas, plans and interventions align and realign. To remain in engagement with such a place we taught ourselves to create opportunities for research and advocacy, interventions and to keep archiving all the data that is generated from our work.
+            </p>
+            <p class="text-base leading-relaxed mb-2">
+                Currently, we are in the process of bringing together all the work done at <a href="https://hydlab.in/" class="hover:text-red-500 underline">Hyderabad Urban Lab</a>, along with other relevant efforts from across Hyderabad, into a single, unified platform. This will serve as a foundation for future research, creative projects, teaching, and capacity building.
+            </p>
+            <p class="text-base leading-relaxed">
+                <strong>For collaborations, data contributions, enquiries, or feedback, email us at <a href="mailto:hulf.observatory@gmail.com" class="hover:text-red-500 underline">hulf.observatory@gmail.com</a>.</strong>
+            </p>
+        </div>
+
+        <h3 class="text-2xl font-bold text-gray-900 mb-8 text-left">People</h3>
+        <!-- People Section - Full width layout (single column) -->
+        <div class="w-full bg-gray-50 p-5 rounded-xl border border-gray-200 shadow-lg">
+            <p class="text-base leading-relaxed mb-4"> <!-- Reduced mb-6 to mb-4 -->
+                There are many who have contributed to the datasets, articles and the initiative from <a href="https://hydlab.in/" class="hover:text-red-500 underline">Hyderabad Urban Lab</a> and friends of Hyderabad. Each of their contributions are attributed wherever possible. Other than that, the key people behind the initiative are:
+            </p>
+
+            <div class="grid grid-cols-1 gap-4"> <!-- Reduced gap-6 to gap-4 -->
+                <!-- Dr. Anant Maringanti -->
+                <div class="bg-white p-4 rounded-xl border border-gray-100 shadow-md relative pb-10"> <!-- Reduced p-6 to p-4, pb-12 to pb-10 -->
+                    <h4 class="text-lg font-semibold text-gray-900 mb-0 text-left">Dr. Anant Maringanti</h4> <!-- Updated name and reduced mb-1 to mb-0 -->
+                    <p class="text-sm font-medium text-gray-800 mb-2 text-left">Director, <a href="https://hydlab.in/" class="hover:text-red-500 underline">Hyderabad Urban Lab</a> and ICGC Director, University of Minnesota</p> <!-- Reduced mb-4 to mb-2 -->
+                    
+                    <button class="absolute bottom-4 right-4 text-gray-700 focus:outline-none toggle-profile-button"> <!-- Reduced bottom-6 to bottom-4, right-6 to right-4 -->
+                        <svg class="w-6 h-6 transform transition-transform duration-200 toggle-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path> <!-- Plus icon -->
+                        </svg>
+                    </button>
+                    
+                    <div class="profile-content hidden mt-2"> <!-- Reduced mt-4 to mt-2 -->
+                        <p class="text-sm leading-relaxed text-gray-700 mb-1">
+                            Dr. Anant is currently Director, <a href="https://icgc.umn.edu/anant-maringanti" class="hover:text-red-500 underline">Interdisciplinary Center for the Study of Global Change (ICGC)</a>, Director of Graduate Studies and Senior Lecturer, Development Studies and Social Change Graduate Minor Program, MDP Program Co-Chair at the University of Minnesota.
+                        </p>
+                        <p class="text-sm leading-relaxed text-gray-700">
+                            As the Founder and Director of <a href="https://hydlab.in/" class="hover:text-red-500 underline">Hyderabad Urban Lab (HUL)</a>, he led an interdisciplinary team dedicated to tackling complex urban challenges in the Global South. His work merges theoretical research with practical action, empowering marginalized communities and influencing urban policy. 
+                        </p>
+                        <p class="text-sm leading-relaxed text-gray-700">
+                            Through <a href="https://hydlab.in/" class="hover:text-red-500 underline">HUL</a> and now <a href="https://icgc.umn.edu/anant-maringanti" class="hover:text-red-500 underline">ICGC</a>, he strives to create pathways for more equitable and sustainable urban futures.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Bhaswati Sengupta -->
+                <div class="bg-white p-4 rounded-xl border border-gray-100 shadow-md relative pb-10"> <!-- Reduced p-6 to p-4, pb-12 to pb-10 -->
+                    <h4 class="text-lg font-semibold text-gray-900 mb-0 text-left">Bhaswati Sengupta</h4> <!-- Reduced mb-1 to mb-0 -->
+                    <p class="text-sm font-medium text-gray-800 mb-2 text-left">Executive Director, <a href="https://hydlab.in/" class="hover:text-red-500 underline">Hyderabad Urban Lab</a></p> <!-- Reduced mb-4 to mb-2 -->
+                    
+                    <button class="absolute bottom-4 right-4 text-gray-700 focus:outline-none toggle-profile-button"> <!-- Reduced bottom-6 to bottom-4, right-6 to right-4 -->
+                        <svg class="w-6 h-6 transform transition-transform duration-200 toggle-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path> <!-- Plus icon -->
+                        </svg>
+                    </button>
+                    
+                    <div class="profile-content hidden mt-2"> <!-- Reduced mt-4 to mt-2 -->
+                        <p class="text-sm leading-relaxed text-gray-700">
+                            Bhashwati would rather sit in a well lit cave and write poetry but instead finds herself grinding her teeth at the Google news page, multiple times a day. At other times she plans and organises things at <a href="https://hydlab.in/" class="hover:text-red-500 underline">HUL</a>. She believes that the dangers of a single story cannot be overstated. She hopes we all always stay mindful of the multiple stories afloat all around us and learn all we can about coexistence as long as we exist.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Teja Malladi -->
+                <div class="bg-white p-4 rounded-xl border border-gray-100 shadow-md relative pb-10"> <!-- Reduced p-6 to p-4, pb-12 to pb-10 -->
+                    <h4 class="text-lg font-semibold text-gray-900 mb-0 text-left">Teja Malladi</h4> <!-- Reduced mb-1 to mb-0 -->
+                    <p class="text-sm font-medium text-gray-800 mb-2 text-left">Associate Director, <a href="https://hydlab.in/" class="hover:text-red-500 underline">Hyderabad Urban Lab</a></p> <!-- Reduced mb-4 to mb-2 -->
+                    
+                    <button class="absolute bottom-4 right-4 text-gray-700 focus:outline-none toggle-profile-button"> <!-- Reduced bottom-6 to bottom-4, right-6 to right-4 -->
+                        <svg class="w-6 h-6 transform transition-transform duration-200 toggle-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path> <!-- Plus icon -->
+                        </svg>
+                    </button>
+                    
+                    <div class="profile-content hidden mt-2"> <!-- Reduced mt-4 to mt-2 -->
+                        <p class="text-sm leading-relaxed text-gray-700 mb-1"> <!-- Reduced mb-2 to mb-1 -->
+                            At <a href="https://hydlab.in/" class="hover:text-red-500 underline">HUL</a> he is developing the Spatial Data Centre (SDC), which develops datasets, analysis, platforms, and tools and organizes trainings to meet the needs of researchers, civil society and governmental actors in Hyderabad.
+                        </p>
+                        <p class="text-sm leading-relaxed text-gray-700">
+                            Teja specializes in applying spatial data science techniques to monitor changes in the urban environment, measure spatial inequalities, and reduce disaster risks. Teja is also the co-founder and CEO of MapSolve AI Private Limited.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer Section (matching index.html) -->
+    <footer class="bg-white text-gray-700 py-4 mt-12 border-t border-gray-100 shadow-sm">
+        <div class="container mx-auto px-8 text-center">
+            <p class="text-xs text-gray-600 mb-2">This website is under continuous development. You may encounter errors or incomplete content. Share your feedback at <a href="mailto:hulf.observatory@gmail.com" class="hover:text-red-500 underline">hulf.observatory@gmail.com</a></p>
+            <p class="text-xs mt-2">
+                <a href="disclaimer.html" class="hover:text-red-500 underline">Disclaimer</a>
+            </p>
+        </div>
+    </footer>
+
+    <script type="module">
+        // JavaScript for handling the burger menu toggle (matching index.html)
+        document.addEventListener('DOMContentLoaded', () => {
+            const menuButton = document.getElementById('menu-button');
+            const collapsibleNav = document.getElementById('collapsible-nav');
+
+            if (menuButton && collapsibleNav) {
+                menuButton.addEventListener('click', () => {
+                    collapsibleNav.classList.toggle('hidden');
+                });
+
+                collapsibleNav.querySelectorAll('a').forEach(link => {
+                    link.addEventListener('click', () => {
+                        collapsibleNav.classList.add('hidden');
+                    });
+                });
+            }
+
+            // JavaScript for handling the "People" section toggles
+            document.querySelectorAll('.toggle-profile-button').forEach(button => {
+                button.addEventListener('click', () => {
+                    const profileContent = button.nextElementSibling; // The div with profile content
+                    const toggleIcon = button.querySelector('.toggle-icon');
+
+                    profileContent.classList.toggle('hidden');
+
+                    if (profileContent.classList.contains('hidden')) {
+                        toggleIcon.style.transform = 'rotate(0deg)'; // Plus icon
+                    } else {
+                        toggleIcon.style.transform = 'rotate(45deg)'; // Rotate to form an 'X' or minus
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
