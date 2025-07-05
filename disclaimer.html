@@ -6,71 +6,107 @@
     <title>Disclaimer - Hyderabad Urban Observatory</title>
     <!-- Tailwind CSS for styling -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts: Inter -->
+    <!-- Google Fonts: DM Sans (matching index.html) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
     <style>
+        /* Apply DM Sans font to the whole page and a light cream background */
         body {
-            font-family: 'Inter', sans-serif;
+            font-family: 'DM Sans', sans-serif; /* Changed to DM Sans */
+            background-color: #fcfbf8; /* Matching index.html background */
+            scroll-behavior: smooth; /* For smooth scrolling to anchor links */
         }
     </style>
 </head>
-<body class="bg-white text-black flex flex-col min-h-screen">
+<body class="text-black flex flex-col min-h-screen">
 
-    <!-- Header Section (similar to main page for consistency) -->
-    <header class="border-b border-gray-200 shadow-sm">
-        <div class="container mx-auto px-6 py-4 flex flex-col md:flex-row justify-between items-center">
-            <!-- Website Title - Now a clickable link to the main page -->
-            <a href="index.html" class="text-2xl font-bold text-gray-900 mb-4 md:mb-0 hover:text-blue-600 transition-colors duration-200 ease-in-out">Hyderabad Urban Observatory</a>
-            <nav>
-                <ul class="flex space-x-6 sm:space-x-8 text-gray-700">
-                    <li><a href="index.html" class="hover:text-blue-600 transition-colors duration-200 ease-in-out font-medium">Home</a></li>
-                    <li><a href="data-sources.html" class="hover:text-blue-600 transition-colors duration-200 ease-in-out font-medium">Data Sources</a></li>
-                    <li><a href="contact.html" class="hover:text-blue-600 transition-colors duration-200 ease-in-out font-medium">Contact</a></li>
+    <!-- Header Section (matching index.html) -->
+    <header class="border-b border-gray-100 shadow-md bg-white relative">
+        <div class="container mx-auto px-6 py-5 flex justify-between items-center">
+            <!-- Website Title and Logo (matching index.html) -->
+            <div class="flex items-center space-x-2">
+                <img src="https://github.com/hulf-observatory/hyderabad.urbanobservatory.in/blob/697d2897c60474dd313e091b31b4fda2c37700a8/images/logo.png?raw=true" alt="Observatory Logo" class="h-10 w-10">
+                <h1 class="text-2xl font-bold text-gray-900">
+                    <a href="index.html" class="hover:text-red-500 transition-colors duration-200 ease-in-out">Hyderabad Urban Observatory</a>
+                </h1>
+            </div>
+            
+            <!-- Burger menu button (matching index.html) -->
+            <button id="menu-button" class="text-gray-700 focus:outline-none focus:text-red-500 transition-colors duration-200 ease-in-out">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
+
+            <!-- Collapsible Navigation (All menu items - matching index.html) -->
+            <nav id="collapsible-nav" class="hidden absolute top-full right-6 bg-white border border-gray-100 shadow-md p-4 mt-2 rounded-lg z-10">
+                <ul class="flex flex-col space-y-4 text-gray-700 items-end">
+                    <li><a href="index.html" class="hover:text-red-500 transition-colors duration-200 ease-in-out font-medium">Home</a></li>
+                    <li><a href="index.html#thematic-areas-section" class="hover:text-red-500 transition-colors duration-200 ease-in-out font-medium">Thematic Areas</a></li>
+                    <li><a href="data-sources.html" class="hover:text-red-500 transition-colors duration-200 ease-in-out font-medium">Data Sources</a></li>
+                    <li><a href="about.html" class="hover:text-red-500 transition-colors duration-200 ease-in-out font-medium">About</a></li>
                 </ul>
             </nav>
         </div>
     </header>
 
     <!-- Main Content Section for Disclaimer -->
-    <main class="container mx-auto px-6 py-10 flex-grow">
+    <main class="container mx-auto px-6 py-12 flex-grow"> <!-- Matching index.html padding -->
         <h2 class="text-2xl font-bold text-gray-900 mb-8 text-left">Disclaimer</h2>
-        <div class="bg-gray-50 p-7 rounded-xl border border-gray-200 shadow-lg w-full">
-            <p class="text-gray-700 text-lg leading-relaxed mb-4">
+        <div class="bg-gray-50 p-5 rounded-xl border border-gray-200 shadow-lg w-full"> <!-- Reduced p-7 to p-5 -->
+            <p class="text-base leading-relaxed mb-2"> <!-- Changed text-lg to text-base, mb-4 to mb-2 -->
                 The spatial data, maps, and related content available on this portal are provided for general informational and illustrative purposes only. While every effort is made to ensure that the information is current, accurate, and reliable, no guarantees or warranties—express or implied—are made regarding the data's completeness, precision, or suitability for any specific use.
             </p>
-            <p class="text-gray-700 text-lg leading-relaxed mb-4">
+            <p class="text-base leading-relaxed mb-2"> <!-- Changed text-lg to text-base, mb-4 to mb-2 -->
                 The maps, boundaries and spatial data presented on this portal are representational in nature. They should not be used for legal, regulatory, or emergency purposes. Any information derived from this portal should be independently validated with appropriate authorities or agencies before use in decision-making or formal applications.
             </p>
-            <p class="text-gray-700 text-lg leading-relaxed mb-4">
+            <p class="text-base leading-relaxed mb-2"> <!-- Changed text-lg to text-base, mb-4 to mb-2 -->
                 The creators, contributors, and hosting institutions of this portal accept no responsibility or liability for any errors, omissions, or inaccuracies in the data, or for any losses, injuries, or damages—direct or indirect—that may result from its use. The data is provided "as is," without warranty of any kind.
             </p>
-            <p class="text-gray-700 text-lg leading-relaxed mb-4">
+            <p class="text-base leading-relaxed mb-2"> <!-- Changed text-lg to text-base, mb-4 to mb-2 -->
                 This portal may contain links to external websites of government ministries, departments, or other organizations. The content and maintenance of those websites are the sole responsibility of the respective entities. Users are advised to contact the original sources directly for further information, clarification, or corrections.
             </p>
-            <p class="text-gray-700 text-lg leading-relaxed mb-4">
+            <p class="text-base leading-relaxed mb-2"> <!-- Changed text-lg to text-base, mb-4 to mb-2 -->
                 Users are responsible for ensuring compliance with any applicable data use licenses or third-party source restrictions.
             </p>
-            <p class="text-gray-700 text-lg leading-relaxed mb-4">
+            <p class="text-base leading-relaxed mb-2"> <!-- Changed text-lg to text-base, mb-4 to mb-2 -->
                 This portal is under continuous development. Visualizations, data, and functionalities may change or be updated without prior notice. Users are encouraged to revisit the portal periodically for the most recent information. We welcome feedback to improve the quality and relevance of this platform.
             </p>
-            <p class="text-gray-700 text-lg leading-relaxed">
-                Please report any issues, inaccuracies, or suggestions to <a href="mailto:hulf.observatory@gmail.com" class="text-blue-600 hover:underline">hulf.observatory@gmail.com</a>
+            <p class="text-base leading-relaxed"> <!-- Changed text-lg to text-base -->
+                Please report any issues, inaccuracies, or suggestions to <a href="mailto:hulf.observatory@gmail.com" class="hover:text-red-500 underline">hulf.observatory@gmail.com</a> <!-- Matching index.html style -->
             </p>
         </div>
     </main>
 
-    <!-- Footer Section -->
-    <footer class="bg-white text-gray-700 py-6 mt-16 border-t border-gray-200 shadow-sm">
-        <div class="container mx-auto px-6 text-center">
-            <p class="text-xs mb-2">This website is under continuous development. You may encounter errors or incomplete content — thanks for your patience!</p>
-            <p class="text-xs text-gray-600 mb-2">Feel free to share feedback at <a href="mailto:hulf.observatory@gmail.com" class="text-blue-600 hover:underline">hulf.observatory@gmail.com</a></p>
-            <p class="text-xs mt-4">
-                <a href="disclaimer.html" class="text-blue-600 hover:underline">Disclaimer</a>
+    <!-- Footer Section (matching index.html) -->
+    <footer class="bg-white text-gray-700 py-4 mt-12 border-t border-gray-100 shadow-sm">
+        <div class="container mx-auto px-8 text-center">
+            <p class="text-xs text-gray-600 mb-2">This website is under continuous development. You may encounter errors or incomplete content — thanks for your patience! Feel free to share feedback at <a href="mailto:hulf.observatory@gmail.com" class="hover:text-red-500 underline">hulf.observatory@gmail.com</a></p>
+            <p class="text-xs mt-2">
+                <a href="disclaimer.html" class="hover:text-red-500 underline">Disclaimer</a>
             </p>
         </div>
     </footer>
 
+    <script type="module">
+        // JavaScript for handling the burger menu toggle (matching index.html)
+        document.addEventListener('DOMContentLoaded', () => {
+            const menuButton = document.getElementById('menu-button');
+            const collapsibleNav = document.getElementById('collapsible-nav');
+
+            if (menuButton && collapsibleNav) {
+                menuButton.addEventListener('click', () => {
+                    collapsibleNav.classList.toggle('hidden');
+                });
+
+                collapsibleNav.querySelectorAll('a').forEach(link => {
+                    link.addEventListener('click', () => {
+                        collapsibleNav.classList.add('hidden');
+                    });
+                });
+            }
+        });
+    </script>
 </body>
 </html>
