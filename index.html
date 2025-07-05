@@ -23,33 +23,27 @@
 
     <!-- Header Section -->
     <header class="border-b border-gray-100 shadow-md bg-white relative">
-        <div class="container mx-auto px-8 py-5 flex justify-between items-center">
+        <div class="container mx-auto px-6 py-5 flex justify-between items-center">
             <!-- Website Title and Logo -->
-            <div class="flex items-center space-x-2"> <!-- Reduced space-x-3 to space-x-2 -->
-                <img src="https://github.com/hulf-observatory/hyderabad.urbanobservatory.in/blob/697d2897c60474dd313e091b31b4fda2c37700a8/images/logo.png?raw=true" alt="Observatory Logo" class="h-10 w-10"> <!-- Updated logo source -->
+            <div class="flex items-center space-x-2">
+                <img src="https://github.com/hulf-observatory/hyderabad.urbanobservatory.in/blob/697d2897c60474dd313e091b31b4fda2c37700a8/images/logo.png?raw=true" alt="Observatory Logo" class="h-10 w-10">
                 <h1 class="text-2xl font-bold text-gray-900">
                     <a href="index.html" class="hover:text-red-500 transition-colors duration-200 ease-in-out">Hyderabad Urban Observatory</a>
                 </h1>
             </div>
             
-            <!-- Main Navigation (Home, Thematic Areas - always visible) -->
-            <nav class="flex space-x-8 text-gray-700 items-center">
-                <ul class="flex space-x-8 text-gray-700 items-center">
-                    <li><a href="index.html" class="hover:text-red-500 transition-colors duration-200 ease-in-out font-medium">Home</a></li>
-                    <li><a href="#thematic-areas-section" class="hover:text-red-500 transition-colors duration-200 ease-in-out font-medium">Thematic Areas</a></li>
-                </ul>
-            </nav>
-
-            <!-- Burger menu button (always visible) -->
+            <!-- Burger menu button (moved back to the right) -->
             <button id="menu-button" class="text-gray-700 focus:outline-none focus:text-red-500 transition-colors duration-200 ease-in-out">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path> <!-- Updated SVG path for three equal bars -->
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
                 </svg>
             </button>
 
-            <!-- Collapsible Navigation (Data Sources, About - hidden by default, revealed by burger) -->
-            <nav id="collapsible-nav" class="hidden absolute top-full right-8 bg-white border border-gray-100 shadow-md p-4 mt-2 rounded-lg z-10">
-                <ul class="flex flex-col space-y-4 text-gray-700 items-end">
+            <!-- Collapsible Navigation (All menu items - hidden by default, revealed by burger) -->
+            <nav id="collapsible-nav" class="hidden absolute top-full right-6 bg-white border border-gray-100 shadow-md p-4 mt-2 rounded-lg z-10"> <!-- Adjusted left-6 back to right-6 -->
+                <ul class="flex flex-col space-y-4 text-gray-700 items-end"> <!-- Changed items-start back to items-end -->
+                    <li><a href="index.html" class="hover:text-red-500 transition-colors duration-200 ease-in-out font-medium">Home</a></li>
+                    <li><a href="#thematic-areas-section" class="hover:text-red-500 transition-colors duration-200 ease-in-out font-medium">Thematic Areas</a></li>
                     <li><a href="data-sources.html" class="hover:text-red-500 transition-colors duration-200 ease-in-out font-medium">Data Sources</a></li>
                     <li><a href="about.html" class="hover:text-red-500 transition-colors duration-200 ease-in-out font-medium">About</a></li>
                 </ul>
@@ -58,24 +52,22 @@
     </header>
 
     <!-- Main Content Section -->
-    <main class="container mx-auto px-8 py-12 flex-grow">
+    <main class="container mx-auto px-6 py-12 flex-grow">
         <!-- Spatial Data Portal Map Section -->
         <div class="flex justify-between items-baseline mb-4">
             <h2 class="text-2xl font-bold text-gray-900 text-left">
                 <a href="spatial-data-portal.html" class="hover:text-red-500 transition-colors duration-200 ease-in-out">Spatial Data Portal</a>
             </h2>
-            <p class="text-gray-700">
-                <a href="#how-to-use-guide" class="hover:text-red-500 underline font-medium whitespace-nowrap text-xs">How to Use This Map</a>
-            </p>
+            <!-- Removed the "How to Use This Map" hyperlink -->
         </div>
 
         <div class="bg-gray-50 p-4 rounded-xl shadow-lg w-full mb-12">
+            <!-- Moved descriptive text above the map and combined "best experience" line -->
+            <p class="text-gray-700 text-sm mb-4">
+                Explore all the spatial data layers on this map. Toggle the layers on the left panel to turn them on and off. To explore the layers on a larger map and for detailed instructions on how to use the map, visit the <a href="spatial-data-portal.html" class="hover:text-red-500 underline">Spatial Data Portal</a>. For the best experience, please view this map on a desktop browser.
+            </p>
             <!-- Updated iframe src and height -->
             <iframe width="100%" height="400" frameborder="0" title="Felt Map" src="https://felt.com/embed/map/Spatial-Data-Portal-QW7y6lU1RtCxAng8m9BHJ7C?loc=17.341%2C78.348%2C8.14z" referrerpolicy="strict-origin-when-cross-origin"></iframe>
-            <!-- Added descriptive text below the map -->
-            <p class="text-gray-700 text-sm mt-4">
-                Explore all the spatial data layers on this map. Toggle the layers on the left panel to turn them on and off. Go to <a href="spatial-data-portal.html" class="hover:text-red-500 underline">Spatial Data Portal</a> to explore a larger map.
-            </p>
         </div>
 
         <!-- Thematic Areas Section -->
@@ -84,7 +76,7 @@
             <!-- Planning Section -->
             <div class="col-span-1">
                 <a href="proposed-land-use.html" class="block bg-white p-8 rounded-xl border border-gray-100 shadow-md hover:shadow-lg hover:border-red-300 transition-all duration-300 ease-in-out cursor-pointer">
-                    <p class="text-sm font-bold text-gray-800 mb-3">PLANNING</p> <!-- Changed to all caps -->
+                    <p class="text-sm font-bold text-gray-800 mb-3">PLANNING</p>
                     <h2 class="text-2xl font-semibold text-gray-900 mb-4">Proposed Land Use 2031</h2>
                     <p class="text-base text-gray-700">View and analyze the proposed land use plan for Hyderabad up to the year 2031.</p>
                 </a>
@@ -97,7 +89,6 @@
     <footer class="bg-white text-gray-700 py-4 mt-12 border-t border-gray-100 shadow-sm">
         <div class="container mx-auto px-8 text-center">
             <p class="text-xs text-gray-600 mb-2">This website is under continuous development. You may encounter errors or incomplete content — thanks for your patience! Feel free to share feedback at <a href="mailto:hulf.observatory@gmail.com" class="hover:text-red-500 underline">hulf.observatory@gmail.com</a></p>
-            <!-- Red line divider removed -->
             <p class="text-xs mt-2">
                 <a href="disclaimer.html" class="hover:text-red-500 underline">Disclaimer</a>
             </p>
