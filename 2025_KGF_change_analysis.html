@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kancha Gachibowli Forest Change Analysis - Hyderabad Urban Observatory</title>
+    <!-- Tailwind CSS for styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: DM Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
+    <style>
+        /* Apply DM Sans font to the whole page and a light cream background */
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background-color: #fcfbf8; 
+            scroll-behavior: smooth; /* For smooth scrolling to anchor links */
+        }
+        /* Custom styles for the new slider */
+        .slider-wrapper {
+            position: relative;
+            border-radius: 0.75rem; /* rounded-xl */
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); /* shadow-md */
+            overflow: hidden; /* Ensures content stays within bounds */
+        }
+        .slider-content {
+            display: flex; /* Arrange images horizontally */
+            scroll-snap-type: x mandatory; /* Snap to images when scrolling */
+            overflow-x: auto; /* Enable horizontal scrolling */
+            -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+            scroll-behavior: smooth; /* Smooth scroll on button click */
+            scrollbar-width: none; /* Hide scrollbar for Firefox */
+            align-items: flex-start; /* Align items to the top if heights vary */
+        }
+        .slider-content::-webkit-scrollbar {
+            display: none; /* Hide scrollbar for Chrome, Safari, Opera */
+        }
+        .slider-item {
+            flex: 0 0 100%; /* Each item takes full width of the container */
+            scroll-snap-align: start; /* Snap to the start of each item */
+            position: relative;
+            padding-bottom: 1rem; /* Add some space below the image */
+        }
+        .slider-item img {
+            width: 100%;
+            height: auto; /* Maintain aspect ratio */
+            object-fit: contain; /* Ensure image is not cropped and fits within bounds */
+            border-radius: 0.75rem; /* rounded-xl */
+        }
+        .image-description-text { /* New class for the description text */
+            margin-bottom: 0.5rem; /* Space between text and image */
+            font-size: 0.875rem; /* text-sm */
+            color: #4b5563; /* gray-700 */
+            text-align: left; /* Ensure text is left-aligned */
+            padding: 0 1rem; /* Padding to match the slider-item's general padding if needed */
+        }
+        .slider-nav-button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+            font-size: 1.5rem;
+            border-radius: 0.375rem; /* rounded-md */
+            transition: background-color 0.3s ease;
+            z-index: 10;
+        }
+        .slider-nav-button:hover {
+            background-color: rgba(0, 0, 0, 0.7);
+        }
+        .slider-nav-button.prev {
+            left: 1rem;
+        }
+        .slider-nav-button.next {
+            right: 1rem;
+        }
+        .slider-dots {
+            display: flex;
+            justify-content: center;
+            margin-top: 1rem;
+            gap: 0.5rem;
+        }
+        .dot {
+            width: 10px;
+            height: 10px;
+            background-color: #ccc;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .dot.active {
+            background-color: #ef4444; /* red-500 */
+        }
+    </style>
+</head>
+<body class="text-black flex flex-col min-h-screen">
+
+    <!-- Header Section (Copied from index.html for consistency) -->
+    <header class="border-b border-gray-100 shadow-md bg-white relative">
+        <div class="container mx-auto px-6 py-5 flex justify-between items-center">
+            <!-- Website Title and Logo -->
+            <div class="flex items-center space-x-2">
+                <img src="https://github.com/hulf-observatory/hyderabad.urbanobservatory.in/blob/697d2897c60474dd313e091b31b4fda2c37700a8/images/logo.png?raw=true" alt="Observatory Logo" class="h-10 w-10">
+                <h1 class="text-2xl font-bold text-gray-900">
+                    <a href="index.html" class="hover:text-red-500 transition-colors duration-200 ease-in-out">Hyderabad Urban Observatory</a>
+                </h1>
+            </div>
+            
+            <!-- Burger menu button -->
+            <button id="menu-button" class="text-gray-700 focus:outline-none focus:text-red-500 transition-colors duration-200 ease-in-out">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
+
+            <!-- Collapsible Navigation -->
+            <nav id="collapsible-nav" class="hidden absolute top-full right-6 bg-white border border-gray-100 shadow-md p-4 mt-2 rounded-lg z-10">
+                <ul class="flex flex-col space-y-4 text-gray-700 items-end">
+                    <li><a href="index.html" class="hover:text-red-500 transition-colors duration-200 ease-in-out font-medium">Home</a></li>
+                    <li><a href="#thematic-areas-section" class="hover:text-red-500 transition-colors duration-200 ease-in-out font-medium">Thematic Areas</a></li>
+                    <li><a href="data-sources.html" class="hover:text-red-500 transition-colors duration-200 ease-in-out font-medium">Data Sources</a></li>
+                    <li><a href="about.html" class="hover:text-red-500 transition-colors duration-200 ease-in-out font-medium">About</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content Section -->
+    <main class="container mx-auto px-6 py-12 flex-grow">
+        <h1 class="text-3xl font-bold text-gray-900 mb-8 text-left">Kancha Gachibowli Forest Change Analysis</h1>
+
+        <!-- Main content box now containing all text and the slider -->
+        <div class="bg-white p-8 rounded-xl border border-gray-100 shadow-md mb-8 text-base text-gray-700 text-left">
+            <p class="mb-4">Between March 30, 2025, and April 3, 2025, a deforestation drive was undertaken in Kancha Gachibowli Forest. We have conducted a quick assessment to map the extent of deforestation and land area that was disturbed in those four days.</p>
+            <p class="mb-4">This analysis focuses on the observed changes in the Kancha Gachibowli area between late March and early April 2025, based on 10m Sentinel-2 satellite imagery. Satellite imagery from March 28, 2025 (pre-deforestation) and April 7, 2025 (post-deforestation) was compared to assess the extent of tree cover loss and land disturbance. The analysis estimates an approximate <strong>green cover loss of 102 acres</strong> within the identified boundary, based on NDVI (Normalized Difference Vegetation Index) changes, and an <strong>overall land disturbance of about 115 acres</strong>, based on observed surface changes.</p>
+            <p class="mb-4">Using the location sketch provided in <a href="https://www.thehindu.com/news/cities/Hyderabad/400-acre-kancha-gachibowli-land-was-not-shown-as-forest-in-revenue-or-forest-records/article69403327.ece" class="hover:text-red-500 underline" target="_blank">The Hindu</a> (accessed on 8 April 2025), we georeferenced the image and digitized the boundary for reference purposes.</p>
+            
+            <!-- Image Slider Section -->
+            <h2 class="text-2xl font-semibold text-gray-800 mb-4 text-left">Before and After Imagery</h2>
+            <p class="text-base text-gray-700 mb-4 text-left">
+                The images below provide a visual comparison of the Kancha Gachibowli area before and after the observed changes, including an illustration of green cover loss and land disturbance.
+            </p>
+            <div class="slider-wrapper">
+                <div class="slider-content" id="slider-content">
+                    <!-- Image 1: Pre-imagery -->
+                    <div class="slider-item">
+                        <p class="image-description-text">Pre-Imagery: Satellite view of Kancha Gachibowli on 28 March 2025.</p>
+                        <img src="https://github.com/hulf-observatory/hyderabad.urbanobservatory.in/blob/a04a2919f3fbda2ecf50457a986c8b7d3f0f8a8a/images/2025_KGF/240409_KGF_Page_1.jpg?raw=true" alt="Pre-Imagery Kancha Gachibowli">
+                    </div>
+                    <!-- Image 2: Post-imagery -->
+                    <div class="slider-item">
+                        <p class="image-description-text">Post-Imagery: Satellite view of Kancha Gachibowli on 07 April 2025.</p>
+                        <img src="https://github.com/hulf-observatory/hyderabad.urbanobservatory.in/blob/a04a2919f3fbda2ecf50457a986c8b7d3f0f8a8a/images/2025_KGF/240409_KGF_Page_2.jpg?raw=true" alt="Post-Imagery Kancha Gachibowli">
+                    </div>
+                    <!-- Image 3: NDVI Change (Conceptual) -->
+                    <div class="slider-item">
+                        <p class="image-description-text">NDVI Change: Illustrates the approximate green cover loss of 102 Acres within the boundary, derived from NDVI analysis.</p>
+                        <img src="https://github.com/hulf-observatory/hyderabad.urbanobservatory.in/blob/a04a2919f3fbda2ecf50457a986c8b7d3f0f8a8a/images/2025_KGF/240409_KGF_Page_3.jpg?raw=true" alt="NDVI Change Kancha Gachibowli">
+                    </div>
+                    <!-- Image 4: Land Disturbance (Conceptual) -->
+                    <div class="slider-item">
+                        <p class="image-description-text">Land Disturbance: Shows the approximate land area disturbed, estimated at 115 Acres, based on observed changes between the two imagery dates.</p>
+                        <img src="https://github.com/hulf-observatory/hyderabad.urbanobservatory.in/blob/a04a2919f3fbda2ecf50457a986c8b7d3f0f8a8a/images/2025_KGF/240409_KGF_Page_4.jpg?raw=true" alt="Land Disturbance Kancha Gachibowli">
+                    </div>
+                </div>
+
+                <!-- Navigation Buttons -->
+                <button class="slider-nav-button prev" aria-label="Previous image">&#10094;</button>
+                <button class="slider-nav-button next" aria-label="Next image">&#10095;</button>
+            </div>
+            <!-- Slider Dots -->
+            <div class="slider-dots" id="slider-dots">
+                <span class="dot active" data-index="0"></span>
+                <span class="dot" data-index="1"></span>
+                <span class="dot" data-index="2"></span>
+                <span class="dot" data-index="3"></span>
+            </div>
+            <p class="text-sm text-gray-600 mt-4 text-left">Use the arrows or dots to navigate through the satellite imagery.</p>
+            <!-- End Image Slider Section -->
+
+            <!-- Interactive Map Embed -->
+            <div class="mt-8">
+                <h2 class="text-2xl font-semibold text-gray-800 mb-4 text-left">Explore the Layers on the Interactive Platform</h2>
+                <div class="bg-gray-50 p-4 rounded-xl shadow-lg w-full">
+                    <iframe width="100%" height="400" frameborder="0" title="Kancha Gachibowli Forest Change Analysis" src="https://felt.com/embed/map/Kancha-Gachibowli-Forest-Change-Analysis-VCSnBpaaSKygUEWRAlIlpB?loc=17.44713%2C78.32661%2C14.93z" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+                </div>
+                <p class="text-sm text-gray-600 mt-4 text-left">Toggle before and after satellite imagery and the change layers on the left panel.</p>
+            </div>
+
+            <p class="mb-4 mt-8">This assessment was conducted for <a href="https://drive.google.com/file/d/1Pn9Y-TuoZpXQ2gEyX5Ahuk_i4EcM2DEh/view?usp=share_link" class="hover:text-red-500 underline" target="_blank">An Ecological Heritage Compilation and Report</a> by Dr. Joseph Joby, University of Hyderabad. We worked in close coordination with Arun Vasireddy, who was part of the team that compiled the report.</p>
+            <p class="text-base text-gray-700 italic">Analysis and visualisation by Teja Malladi with inputs from Dr. Anant Maringanti</p>
+            <p class="text-base text-gray-700 italic">Last updated on 05 July 2025</p>
+        </div>
+    </main>
+
+    <!-- Footer Section (Copied from index.html for consistency) -->
+    <footer class="bg-white text-gray-700 py-4 mt-12 border-t border-gray-100 shadow-sm">
+        <div class="container mx-auto px-8 text-center">
+            <p class="text-xs text-gray-600 mb-2">This website is under continuous development. You may encounter errors or incomplete content. Share your feedback at <a href="mailto:hulf.observatory@gmail.com" class="hover:text-red-500 underline">hulf.observatory@gmail.com</a></p>
+            <p class="text-xs mt-2">
+                <a href="disclaimer.html" class="hover:text-red-500 underline">Disclaimer</a>
+            </p>
+        </div>
+    </footer>
+
+    <script type="module">
+        // JavaScript for handling the burger menu toggle
+        document.addEventListener('DOMContentLoaded', () => {
+            const menuButton = document.getElementById('menu-button');
+            const collapsibleNav = document.getElementById('collapsible-nav');
+
+            if (menuButton && collapsibleNav) {
+                // Toggle visibility of the collapsible menu
+                menuButton.addEventListener('click', () => {
+                    collapsibleNav.classList.toggle('hidden');
+                });
+
+                // Close menu when a link is clicked
+                collapsibleNav.querySelectorAll('a').forEach(link => {
+                    link.addEventListener('click', () => {
+                        collapsibleNav.classList.add('hidden'); // Always close after clicking a link
+                    });
+                });
+            }
+
+            // Image Slider Logic (Horizontal Scroll)
+            const sliderContent = document.getElementById('slider-content');
+            const prevButton = document.querySelector('.slider-nav-button.prev');
+            const nextButton = document.querySelector('.slider-nav-button.next');
+            const dotsContainer = document.getElementById('slider-dots');
+            const sliderItems = document.querySelectorAll('.slider-item');
+            let currentItemIndex = 0;
+
+            function updateSlider() {
+                // Scroll to the current item
+                sliderContent.scrollTo({
+                    left: sliderItems[currentItemIndex].offsetLeft,
+                    behavior: 'smooth'
+                });
+                // Update active dot
+                updateDots();
+            }
+
+            function updateDots() {
+                const dots = dotsContainer.querySelectorAll('.dot');
+                dots.forEach((dot, index) => {
+                    if (index === currentItemIndex) {
+                        dot.classList.add('active');
+                    } else {
+                        dot.classList.remove('active');
+                    }
+                });
+            }
+
+            function nextItem() {
+                currentItemIndex = (currentItemIndex + 1) % sliderItems.length;
+                updateSlider();
+            }
+
+            function prevItem() {
+                currentItemIndex = (currentItemIndex - 1 + sliderItems.length) % sliderItems.length;
+                updateSlider();
+            }
+
+            // Event listeners for navigation buttons
+            if (prevButton && nextButton) {
+                prevButton.addEventListener('click', prevItem);
+                nextButton.addEventListener('click', nextItem);
+            }
+
+            // Event listeners for dots
+            dotsContainer.addEventListener('click', (event) => {
+                if (event.target.classList.contains('dot')) {
+                    const index = parseInt(event.target.dataset.index);
+                    if (!isNaN(index)) {
+                        currentItemIndex = index;
+                        updateSlider();
+                    }
+                }
+            });
+
+            // Optional: Update dots if user manually scrolls (less precise with scroll-snap)
+            sliderContent.addEventListener('scroll', () => {
+                const scrollLeft = sliderContent.scrollLeft;
+                const itemWidth = sliderItems[0].offsetWidth; // Assuming all items have same width
+                // Calculate the closest item based on scroll position
+                currentItemIndex = Math.round(scrollLeft / itemWidth);
+                updateDots();
+            });
+
+            // Initialize slider on load
+            updateSlider();
+        });
+    </script>
+</body>
+</html>
