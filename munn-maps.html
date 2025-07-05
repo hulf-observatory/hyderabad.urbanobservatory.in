@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hyderabad Municipal Survey, 1915 - Maps</title>
+    <!-- Tailwind CSS for styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: DM Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background-color: #fcfbf8;
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body class="text-black flex flex-col min-h-screen">
+
+    <!-- Header Section (Copied from index.html for consistency) -->
+    <header class="border-b border-gray-100 shadow-md bg-white relative">
+        <div class="container mx-auto px-6 py-5 flex justify-between items-center">
+            <!-- Website Title and Logo -->
+            <div class="flex items-center space-x-2">
+                <img src="https://github.com/hulf-observatory/hyderabad.urbanobservatory.in/blob/697d2897c60474dd313e091b31b4fda2c37700a8/images/logo.png?raw=true" alt="Observatory Logo" class="h-10 w-10">
+                <h1 class="text-2xl font-bold text-gray-900">
+                    <a href="index.html" class="hover:underline transition-colors duration-200 ease-in-out">Hyderabad Urban Observatory</a>
+                </h1>
+            </div>
+            
+            <!-- Burger menu button -->
+            <button id="menu-button" class="text-gray-700 focus:outline-none focus:text-red-500 transition-colors duration-200 ease-in-out">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
+
+            <!-- Collapsible Navigation -->
+            <nav id="collapsible-nav" class="hidden absolute top-full right-6 bg-white border border-gray-100 shadow-md p-4 mt-2 rounded-lg z-10">
+                <ul class="flex flex-col space-y-4 text-gray-700 items-end">
+                    <li><a href="index.html" class="hover:underline transition-colors duration-200 ease-in-out font-medium">Home</a></li>
+                    <li><a href="index.html#thematic-areas-section" class="hover:underline transition-colors duration-200 ease-in-out font-medium">Thematic Areas</a></li>
+                    <li><a href="data-sources.html" class="hover:underline transition-colors duration-200 ease-in-out font-medium">Data Sources</a></li>
+                    <li><a href="about.html" class="hover:underline transition-colors duration-200 ease-in-out font-medium">About</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="flex-grow">
+        <div class="container mx-auto px-6 py-12">
+            <h1 class="text-3xl font-bold text-gray-900 mb-8 text-center">Hyderabad Municipal Survey, 1915 by Leonard Munn</h1>
+            
+            <div class="bg-gray-50 p-4 rounded-xl shadow-lg w-full">
+                <p class="text-gray-700 text-sm mb-4">
+                    Explore the historical municipal survey maps of Hyderabad conducted by Leonard Munn between 1911 and 1913, after the devastating 1908 floods.
+                </p>
+                <p class="text-gray-700 text-sm mb-4">
+                    Toggle between the map and the base image to visualise changes over the last 100 years.
+                    Notice areas like Mir Jumla Tank, now fully built over, and the development around RTC X Roads and other parts of the city.
+                    Key locations have been marked to help you orient yourself.
+                    We’ll be adding more stories and archival images soon. If you have stories or photos that capture how these areas have changed, we’d love to hear from you.
+                </p>
+                <p class="text-gray-700 text-sm mt-4">
+                    Browse the full collection and individual maps <a href="https://dome.mit.edu/handle/1721.3/45288" class="underline" target="_blank">here</a>.
+                </p>
+            </div>
+        </div>
+
+        <!-- Map Section - Full width -->
+        <div class="w-full">
+            <iframe width="100%" height="600" frameborder="0" title="Hyderabad Municipal Survey, 1915" src="https://felt.com/embed/map/Hyderabad-Municipal-Survey-1915-oolrpcpsQnutDFg0oEp9BXC?loc=17.361374%2C78.476064%2C16.04z&hide_labels=true" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+        </div>
+    </main>
+
+    <!-- Footer Section (Copied from index.html for consistency) -->
+    <footer class="bg-white text-gray-700 py-4 border-t border-gray-100 shadow-sm">
+        <div class="container mx-auto px-8 text-center">
+            <p class="text-xs text-gray-600 mb-2">This website is under continuous development. You may encounter errors or incomplete content. Share your feedback at <a href="mailto:hulf.observatory@gmail.com" class="hover:underline">hulf.observatory@gmail.com</a></p>
+            <p class="text-xs mt-2">
+                <a href="disclaimer.html" class="hover:underline">Disclaimer</a>
+            </p>
+        </div>
+    </footer>
+
+    <script type="module">
+        // JavaScript for handling the burger menu toggle
+        document.addEventListener('DOMContentLoaded', () => {
+            const menuButton = document.getElementById('menu-button');
+            const collapsibleNav = document.getElementById('collapsible-nav');
+
+            if (menuButton && collapsibleNav) {
+                menuButton.addEventListener('click', () => {
+                    collapsibleNav.classList.toggle('hidden');
+                });
+
+                collapsibleNav.querySelectorAll('a').forEach(link => {
+                    link.addEventListener('click', () => {
+                        collapsibleNav.classList.add('hidden');
+                    });
+                });
+            }
+        });
+    </script>
+</body>
+</html>
