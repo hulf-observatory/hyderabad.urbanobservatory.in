@@ -46,16 +46,16 @@
                 </h1>
             </div>
 
-            <!-- Burger menu button -->
+            <!-- Burger menu button (visible on all screens) -->
             <button id="menu-button" class="text-gray-700 focus:outline-none focus:text-red-500 transition-colors duration-200 ease-in-out p-2 rounded-md">
                 <svg class="w-6 h-6 menu-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
                 </svg>
             </button>
 
-            <!-- Collapsible Navigation (All menu items - hidden by default, revealed by burger) -->
-            <nav id="collapsible-nav" class="hidden absolute top-full right-6 bg-white border border-gray-100 shadow-md p-4 mt-2 rounded-lg z-10 md:static md:flex md:p-0 md:mt-0 md:border-none md:shadow-none md:bg-transparent">
-                <ul class="flex flex-col space-y-4 text-gray-700 items-end md:flex-row md:space-y-0 md:space-x-6 md:items-center">
+            <!-- Collapsible Navigation (Hidden by default, controlled by JS) -->
+            <nav id="collapsible-nav" class="hidden absolute top-full right-6 bg-white border border-gray-100 shadow-md p-4 mt-2 rounded-lg z-10">
+                <ul class="flex flex-col space-y-4 text-gray-700 items-end">
                     <li><a href="index.html" class="underline text-gray-700 hover:text-red-500 transition-colors duration-200 ease-in-out font-medium">Home</a></li>
                     <li><a href="thematic_areas.html" class="underline text-gray-700 hover:text-red-500 transition-colors duration-200 ease-in-out font-medium">Thematic Areas</a></li>
                     <li><a href="data-sources.html" class="underline text-gray-700 hover:text-red-500 transition-colors duration-200 ease-in-out font-medium">Data Sources</a></li>
@@ -69,15 +69,15 @@
     <main class="flex-grow">
         <!-- New Thematic Areas Link Section -->
         <div class="container mx-auto px-6 py-6">
-            <div class="bg-white p-4 rounded-xl border border-gray-100 shadow-lg w-full mb-6 text-left cursor-pointer" onclick="window.location.href='thematic_areas.html'"> <!-- Changed mb-12 to mb-6 -->
-                <p class="text-xl text-gray-900">
+            <div class="bg-white p-3 rounded-xl border border-gray-100 shadow-lg w-full mb-6 text-left md:text-center cursor-pointer" onclick="window.location.href='thematic_areas.html'">
+                <p class="text-lg text-gray-900">
                     Click here to view maps organised by <a href="thematic_areas.html" class="font-bold underline text-gray-900 hover:text-red-500">Thematic Areas</a>.
                 </p>
             </div>
         </div>
 
         <!-- Spatial Data Repository Section -->
-        <div class="mb-12">
+        <div class="mb-6"> <!-- Reduced mb-12 to mb-6 -->
             <div class="container mx-auto px-6">
                 <!-- Top Section: Title and How-to-Use Toggle -->
                 <div class="flex justify-between items-baseline mb-4">
@@ -112,19 +112,19 @@
             </div>
 
             <!-- Map Embed - Now truly edge-to-edge -->
-            <div class="w-full bg-gray-50 mb-12 shadow-lg px-0 rounded-none">
+            <div class="w-full bg-gray-50 mb-6 shadow-lg px-0 rounded-none"> <!-- Reduced mb-12 to mb-6 -->
                 <iframe width="100%" height="90vh" frameborder="0" title="Felt Map" src="https://felt.com/embed/map/Spatial-Data-Repository-QW7y6lU1RtCxAng8m9BHJ7C?loc=17.341%2C78.348%2C8.14z" referrerpolicy="strict-origin-when-cross-origin"></iframe>
             </div>
         </div>
     </main>
 
     <!-- Text below spatial data repository (now just general updates) -->
-    <div class="container mx-auto px-6 py-4 text-center text-gray-400 italic text-sm font-light">
+    <div class="container mx-auto px-6 py-2 text-center text-gray-400 italic text-sm font-light"> <!-- Reduced py-4 to py-2 -->
         <p>This website is continuously updated with new data and features.</p>
     </div>
 
     <!-- Footer Section -->
-    <footer class="bg-white text-gray-700 py-4 mt-12 border-t border-gray-100 shadow-sm">
+    <footer class="bg-white text-gray-700 py-4 mt-6 border-t border-gray-100 shadow-sm"> <!-- Reduced mt-12 to mt-6 -->
         <div class="container mx-auto px-8 text-center">
             <p class="text-xs text-gray-600 mb-2">This website is under continuous development. You may encounter errors or incomplete content. Share your feedback at <a href="mailto:hulf.observatory@gmail.com" class="underline text-gray-600 hover:text-red-500">hulf.observatory@gmail.com</a></p>
             <p class="text-xs mt-2">
@@ -155,28 +155,14 @@
                     });
                 });
 
-                // Close menu when clicking outside (for mobile)
+                // Close menu when clicking outside (for all devices)
                 document.addEventListener('click', (event) => {
+                    // Check if the click is outside the menu and the button, and if the menu is currently visible
                     if (!collapsibleNav.contains(event.target) && !menuButton.contains(event.target) && !collapsibleNav.classList.contains('hidden')) {
                         collapsibleNav.classList.add('hidden');
                         menuIcon.classList.remove('open');
                     }
                 });
-
-                // Handle window resize for desktop navigation
-                window.addEventListener('resize', () => {
-                    if (window.innerWidth >= 768) { // Tailwind's 'md' breakpoint
-                        collapsibleNav.classList.remove('hidden'); // Show nav on desktop
-                        menuIcon.classList.remove('open'); // Ensure icon is reset
-                    } else {
-                        collapsibleNav.classList.add('hidden'); // Hide nav on mobile
-                    }
-                });
-
-                // Initial check on load for desktop navigation
-                if (window.innerWidth >= 768) {
-                    collapsibleNav.classList.remove('hidden');
-                }
             }
 
             // JavaScript for handling the "How to Use This Map" toggle
