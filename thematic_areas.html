@@ -17,32 +17,40 @@
             background-color: #fcfbf8;
             scroll-behavior: smooth; /* For smooth scrolling to anchor links */
         }
-        /* Custom styles for the thematic cards to ensure consistent initial height */
+        /* Custom styles for the thematic cards */
         .thematic-card {
-            min-height: 240px; /* Adjusted to ensure consistent height for all cards */
             cursor: pointer; /* Indicate that the entire card is clickable */
             display: flex; /* Use flexbox for better control over content alignment */
             flex-direction: column; /* Stack content vertically */
-            justify-content: space-between; /* Push toggle button to the bottom */
+            justify-content: space-between; /* Push content to top, description below */
+            position: relative; /* For absolute positioning of the toggle button */
         }
-        /* Ensure links within the card are still clickable */
-        .thematic-card a {
-            cursor: pointer;
-        }
-        /* Smooth transition for the description text */
+
+        /* Styles for the full description to enable smooth transition */
         .full-description {
-            transition: max-height 0.3s ease-out, opacity 0.3s ease-out;
-            overflow: hidden;
-            max-height: 0;
-            opacity: 0;
+            max-height: 0; /* Start with 0 height when hidden */
+            opacity: 0; /* Start with 0 opacity when hidden */
+            overflow: hidden; /* Hide overflow content */
+            transition: max-height 0.5s ease-in-out, opacity 0.3s ease-in-out; /* Smooth transition for height and opacity */
         }
+
+        /* Class to apply when the description is visible */
         .full-description.expanded {
-            max-height: 200px; /* Adjust as needed for content */
-            opacity: 1;
+            max-height: 200px; /* A large enough value to accommodate content */
+            opacity: 1; /* Fully visible */
+        }
+
+        /* Burger menu icon animation */
+        .menu-icon {
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .menu-icon.open {
+            transform: rotate(90deg);
         }
         /* Styling for filter bubbles */
         .filter-bubble {
-            padding: 0.5rem 1rem;
+            padding: 0.25rem 0.5rem; /* Reduced padding */
             border-radius: 9999px; /* Fully rounded */
             border: 1px solid #d1d5db; /* Gray-300 */
             background-color: #ffffff;
@@ -67,43 +75,43 @@
 </head>
 <body class="text-black flex flex-col min-h-screen">
 
-    <!-- Header Section (Simplified for this page) -->
+    <!-- Header Section -->
     <header class="border-b border-gray-100 shadow-md bg-white relative">
         <div class="container mx-auto px-6 py-5 flex justify-between items-center">
             <!-- Website Title and Logo -->
             <div class="flex items-center space-x-2">
                 <img src="https://github.com/hulf-observatory/hyderabad.urbanobservatory.in/blob/697d2897c60474dd313e091b31b4fda2c37700a8/images/logo.png?raw=true" alt="Observatory Logo" class="h-10 w-10 rounded-full">
                 <h1 class="text-2xl font-bold text-gray-900">
-                    <a href="index.html" class="hover:underline transition-colors duration-200 ease-in-out">Hyderabad Urban Observatory</a>
+                    <a href="index.html" class="text-gray-900 hover:text-red-500 transition-colors duration-200 ease-in-out">Hyderabad Urban Observatory</a>
                 </h1>
             </div>
 
-            <!-- Burger menu button -->
-            <button id="menu-button" class="text-gray-700 focus:outline-none focus:text-red-500 transition-colors duration-200 ease-in-out md:hidden"
-                    aria-controls="collapsible-nav" aria-expanded="false" aria-label="Toggle navigation menu">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <!-- Burger menu button (visible on all screens) -->
+            <button id="menu-button" class="text-gray-700 focus:outline-none focus:text-red-500 transition-colors duration-200 ease-in-out p-2 rounded-md">
+                <svg class="w-6 h-6 menu-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
                 </svg>
             </button>
 
-            <!-- Collapsible Navigation (All menu items - hidden by default on mobile, visible on desktop) -->
-            <nav id="collapsible-nav" class="hidden absolute top-full right-6 bg-white border border-gray-100 shadow-md p-4 mt-2 rounded-lg z-10 md:static md:block md:p-0 md:mt-0 md:border-none md:shadow-none">
-                <ul class="flex flex-col space-y-4 text-gray-700 items-end md:flex-row md:space-y-0 md:space-x-8 md:items-center">
-                    <li><a href="index.html" class="hover:underline transition-colors duration-200 ease-in-out font-medium">Home</a></li>
-                    <li><a href="#thematic-areas-section" class="hover:underline transition-colors duration-200 ease-in-out font-medium">Thematic Areas</a></li>
-                    <li><a href="data-sources.html" class="hover:underline transition-colors duration-200 ease-in-out font-medium">Data Sources</a></li>
-                    <li><a href="about.html" class="hover:underline transition-colors duration-200 ease-in-out font-medium">About</a></li>
+            <!-- Collapsible Navigation (Hidden by default, controlled by JS) -->
+            <nav id="collapsible-nav" class="hidden absolute top-full right-6 bg-white border border-gray-100 shadow-md p-4 mt-2 rounded-lg z-10">
+                <ul class="flex flex-col space-y-4 text-gray-700 items-end">
+                    <li><a href="index.html" class="text-gray-700 hover:text-red-500 transition-colors duration-200 ease-in-out font-medium">Home</a></li>
+                    <li><a href="thematic_areas.html" class="text-gray-700 hover:text-red-500 transition-colors duration-200 ease-in-out font-medium">Thematic Areas</a></li>
+                    <li><a href="knowledge-repository.html" class="text-gray-700 hover:text-red-500 transition-colors duration-200 ease-in-out font-medium">Knowledge Repository</a></li>
+                    <li><a href="data-sources.html" class="text-gray-700 hover:text-red-500 transition-colors duration-200 ease-in-out font-medium">Data Sources</a></li>
+                    <li><a href="about.html" class="text-gray-700 hover:text-red-500 transition-colors duration-200 ease-in-out font-medium">About</a></li>
                 </ul>
             </nav>
         </div>
     </header>
 
     <!-- Main Content Section: Thematic Areas -->
-    <main class="container mx-auto px-6 py-12 flex-grow">
-        <h2 id="thematic-areas-section" class="text-3xl font-bold text-gray-900 mb-8 text-left">Thematic Areas</h2>
+    <main class="container mx-auto px-6 py-6 flex-grow">
+        <p class="text-lg text-gray-700 mb-4">Filter by themes and click on each card to read more.</p>
 
         <!-- Theme Filter Bubbles -->
-        <div class="flex flex-wrap gap-3 mb-8 justify-start">
+        <div class="flex flex-wrap gap-1 mb-4 justify-center">
             <button class="filter-bubble selected" data-theme="all" aria-pressed="true">All Themes</button>
             <button class="filter-bubble" data-theme="ENVIRONMENTAL IMPACT" aria-pressed="false">Environmental Impact</button>
             <button class="filter-bubble" data-theme="HISTORICAL DATA" aria-pressed="false">Historical Data</button>
@@ -118,61 +126,61 @@
         <div id="thematic-cards-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             <!-- Environmental Impact Section -->
             <div class="col-span-1 thematic-card-wrapper" data-theme="ENVIRONMENTAL IMPACT">
-                <div class="thematic-card bg-white p-8 rounded-xl border border-gray-100 shadow-md hover:shadow-lg hover:border-red-300 transition-all duration-300 ease-in-out">
-                    <p class="text-sm font-bold text-gray-800 mb-3">ENVIRONMENTAL IMPACT</p>
-                    <h3 class="text-2xl font-semibold text-gray-900 mb-4">
-                        <a href="2025_KGF_change_analysis.html" class="hover:underline transition-colors duration-200 ease-in-out">Kancha Gachibowli Forest Change Analysis</a>
+                <div class="thematic-card bg-white p-4 rounded-xl border border-gray-100 shadow-md hover:shadow-lg hover:border-red-500 transition-all duration-300 ease-in-out">
+                    <p class="text-sm font-bold text-gray-800 mb-2">ENVIRONMENTAL IMPACT</p>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-2">
+                        Kancha Gachibowli Forest Change Analysis
                     </h3>
 
-                    <div class="flex justify-end mt-auto">
-                        <button class="toggle-button text-gray-700 text-2xl font-bold focus:outline-none bg-white rounded-full w-8 h-8 flex items-center justify-center border border-gray-200 shadow-sm hover:bg-gray-100 transition-colors duration-200"
-                                aria-expanded="false" aria-controls="kgf-description" aria-label="Toggle description for Kancha Gachibowli Forest Change Analysis">
-                            +
-                        </button>
-                    </div>
+                    <button class="toggle-button bg-white rounded-full w-6 h-6 flex items-center justify-center text-gray-700 hover:text-red-500 transition-colors duration-200 absolute top-3 right-3"
+                            aria-expanded="false" aria-controls="kgf-description" aria-label="Toggle description for Kancha Gachibowli Forest Change Analysis">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path class="toggle-icon-path" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16M4 12h16"></path>
+                        </svg>
+                    </button>
 
                     <div id="kgf-description" class="full-description mt-4" aria-hidden="true">
-                        <p class="text-base text-gray-700">This analysis focuses on green cover loss (approx. 102 Acres) and land area disturbed (approx. 115 Acres) in Kancha Gachibowli between March and April 2025, based on Sentinel-2 imagery. <a href="2025_KGF_change_analysis.html" class="underline">Click here to explore</a></p>
+                        <p class="text-base text-gray-700">This analysis focuses on green cover loss (approx. 102 Acres) and land area disturbed (approx. 115 Acres) in Kancha Gachibowli between March and April 2025, based on Sentinel-2 imagery. <a href="2025_KGF_change_analysis.html" class="underline text-gray-700 hover:text-red-500">Click here to explore</a></p>
                     </div>
                 </div>
             </div>
             <!-- Hyderabad Municipal Survey Section -->
             <div class="col-span-1 thematic-card-wrapper" data-theme="HISTORICAL DATA">
-                <div class="thematic-card bg-white p-8 rounded-xl border border-gray-100 shadow-md hover:shadow-lg hover:border-red-300 transition-all duration-300 ease-in-out">
-                    <p class="text-sm font-bold text-gray-800 mb-3">HISTORICAL DATA</p>
-                    <h3 class="text-2xl font-semibold text-gray-900 mb-4">
-                        <a href="munn-maps.html" class="hover:underline transition-colors duration-200 ease-in-out">Hyderabad Municipal Survey, 1915 by Leonard Munn</a>
+                <div class="thematic-card bg-white p-4 rounded-xl border border-gray-100 shadow-md hover:shadow-lg hover:border-red-500 transition-all duration-300 ease-in-out">
+                    <p class="text-sm font-bold text-gray-800 mb-2">HISTORICAL DATA</p>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-2">
+                        Hyderabad Municipal Survey, 1915 by Leonard Munn
                     </h3>
 
-                    <div class="flex justify-end mt-auto">
-                        <button class="toggle-button text-gray-700 text-2xl font-bold focus:outline-none bg-white rounded-full w-8 h-8 flex items-center justify-center border border-gray-200 shadow-sm hover:bg-gray-100 transition-colors duration-200"
-                                aria-expanded="false" aria-controls="munn-description" aria-label="Toggle description for Hyderabad Municipal Survey">
-                            +
-                        </button>
-                    </div>
+                    <button class="toggle-button bg-white rounded-full w-6 h-6 flex items-center justify-center text-gray-700 hover:text-red-500 transition-colors duration-200 absolute top-3 right-3"
+                            aria-expanded="false" aria-controls="munn-description" aria-label="Toggle description for Hyderabad Municipal Survey">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path class="toggle-icon-path" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16M4 12h16"></path>
+                        </svg>
+                    </button>
 
                     <div id="munn-description" class="full-description mt-4" aria-hidden="true">
-                        <p class="text-base text-gray-700">Municipal Survey conducted by Leonard Munn between 1911 and 1913 after the 1908 historical floods. <a href="munn-maps.html" class="underline">Click here to explore</a></p>
+                        <p class="text-base text-gray-700">Municipal Survey conducted by Leonard Munn between 1911 and 1913 after the 1908 historical floods. <a href="munn-maps.html" class="underline text-gray-700 hover:text-red-500">Click here to explore</a></p>
                     </div>
                 </div>
             </div>
             <!-- Planning Section (Moved to End) -->
             <div class="col-span-1 thematic-card-wrapper" data-theme="PLANNING">
-                <div class="thematic-card bg-white p-8 rounded-xl border border-gray-100 shadow-md hover:shadow-lg hover:border-red-300 transition-all duration-300 ease-in-out">
-                    <p class="text-sm font-bold text-gray-800 mb-3">
+                <div class="thematic-card bg-white p-4 rounded-xl border border-gray-100 shadow-md hover:shadow-lg hover:border-red-500 transition-all duration-300 ease-in-out">
+                    <p class="text-sm font-bold text-gray-800 mb-2">
                         PLANNING
                         <span class="text-gray-400 italic text-sm ml-2 font-light">Coming Soon</span>
                     </p>
-                    <h3 class="text-2xl font-semibold text-gray-900 mb-4">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-2">
                         Proposed Land Use 2031
                     </h3>
 
-                    <div class="flex justify-end mt-auto">
-                        <button class="toggle-button text-gray-700 text-2xl font-bold focus:outline-none bg-white rounded-full w-8 h-8 flex items-center justify-center border border-gray-200 shadow-sm hover:bg-gray-100 transition-colors duration-200"
-                                aria-expanded="false" aria-controls="landuse-description" aria-label="Toggle description for Proposed Land Use 2031">
-                            +
-                        </button>
-                    </div>
+                    <button class="toggle-button bg-white rounded-full w-6 h-6 flex items-center justify-center text-gray-700 hover:text-red-500 transition-colors duration-200 absolute top-3 right-3"
+                            aria-expanded="false" aria-controls="landuse-description" aria-label="Toggle description for Proposed Land Use 2031">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path class="toggle-icon-path" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16M4 12h16"></path>
+                        </svg>
+                    </button>
 
                     <div id="landuse-description" class="full-description mt-4" aria-hidden="true">
                         <p class="text-base text-gray-700">Discover how the 2031 Master Plan envisions the city’s future by exploring the proposed land use map, shown here as a layer over the current basemaps.</p>
@@ -183,21 +191,21 @@
             <!-- New Coming Soon Tiles -->
             <!-- Built-up Area Growth (1990–2020) -->
             <div class="col-span-1 thematic-card-wrapper" data-theme="DATA VISUALIZATION">
-                <div class="thematic-card bg-white p-8 rounded-xl border border-gray-100 shadow-md hover:shadow-lg hover:border-red-300 transition-all duration-300 ease-in-out">
-                    <p class="text-sm font-bold text-gray-800 mb-3">
+                <div class="thematic-card bg-white p-4 rounded-xl border border-gray-100 shadow-md hover:shadow-lg hover:border-red-500 transition-all duration-300 ease-in-out">
+                    <p class="text-sm font-bold text-gray-800 mb-2">
                         DATA VISUALIZATION
                         <span class="text-gray-400 italic text-sm ml-2 font-light">Coming Soon</span>
                     </p>
-                    <h3 class="text-2xl font-semibold text-gray-900 mb-4">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-2">
                         Built-up Area Growth (1990–2020)
                     </h3>
 
-                    <div class="flex justify-end mt-auto">
-                        <button class="toggle-button text-gray-700 text-2xl font-bold focus:outline-none bg-white rounded-full w-8 h-8 flex items-center justify-center border border-gray-200 shadow-sm hover:bg-gray-100 transition-colors duration-200"
-                                aria-expanded="false" aria-controls="builtup-description" aria-label="Toggle description for Built-up Area Growth">
-                            +
-                        </button>
-                    </div>
+                    <button class="toggle-button bg-white rounded-full w-6 h-6 flex items-center justify-center text-gray-700 hover:text-red-500 transition-colors duration-200 absolute top-3 right-3"
+                            aria-expanded="false" aria-controls="builtup-description" aria-label="Toggle description for Built-up Area Growth">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path class="toggle-icon-path" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16M4 12h16"></path>
+                        </svg>
+                    </button>
 
                     <div id="builtup-description" class="full-description mt-4" aria-hidden="true">
                         <p class="text-base text-gray-700">Tracks the spatial expansion of Hyderabad over three decades.</p>
@@ -207,21 +215,21 @@
 
             <!-- Water Supply Timings and Inequality -->
             <div class="col-span-1 thematic-card-wrapper" data-theme="URBAN SERVICES">
-                <div class="thematic-card bg-white p-8 rounded-xl border border-gray-100 shadow-md hover:shadow-lg hover:border-red-300 transition-all duration-300 ease-in-out">
-                    <p class="text-sm font-bold text-gray-800 mb-3">
+                <div class="thematic-card bg-white p-4 rounded-xl border border-gray-100 shadow-md hover:shadow-lg hover:border-red-500 transition-all duration-300 ease-in-out">
+                    <p class="text-sm font-bold text-gray-800 mb-2">
                         URBAN SERVICES
                         <span class="text-gray-400 italic text-sm ml-2 font-light">Coming Soon</span>
                     </p>
-                    <h3 class="text-2xl font-semibold text-gray-900 mb-4">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-2">
                         Water Supply Timings and Inequality
                     </h3>
 
-                    <div class="flex justify-end mt-auto">
-                        <button class="toggle-button text-gray-700 text-2xl font-bold focus:outline-none bg-white rounded-full w-8 h-8 flex items-center justify-center border border-gray-200 shadow-sm hover:bg-gray-100 transition-colors duration-200"
-                                aria-expanded="false" aria-controls="water-description" aria-label="Toggle description for Water Supply Timings and Inequality">
-                            +
-                        </button>
-                    </div>
+                    <button class="toggle-button bg-white rounded-full w-6 h-6 flex items-center justify-center text-gray-700 hover:text-red-500 transition-colors duration-200 absolute top-3 right-3"
+                            aria-expanded="false" aria-controls="water-description" aria-label="Toggle description for Water Supply Timings and Inequality">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path class="toggle-icon-path" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16M4 12h16"></path>
+                        </svg>
+                    </button>
 
                     <div id="water-description" class="full-description mt-4" aria-hidden="true">
                         <p class="text-base text-gray-700">Maps disparities in water access and timing across neighborhoods.</p>
@@ -231,21 +239,21 @@
 
             <!-- 2011 Census Ward Maps -->
             <div class="col-span-1 thematic-card-wrapper" data-theme="DEMOGRAPHICS">
-                <div class="thematic-card bg-white p-8 rounded-xl border border-gray-100 shadow-md hover:shadow-lg hover:border-red-300 transition-all duration-300 ease-in-out">
-                    <p class="text-sm font-bold text-gray-800 mb-3">
+                <div class="thematic-card bg-white p-4 rounded-xl border border-gray-100 shadow-md hover:shadow-lg hover:border-red-500 transition-all duration-300 ease-in-out">
+                    <p class="text-sm font-bold text-gray-800 mb-2">
                         DEMOGRAPHICS
                         <span class="text-gray-400 italic text-sm ml-2 font-light">Coming Soon</span>
                     </p>
-                    <h3 class="text-2xl font-semibold text-gray-900 mb-4">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-2">
                         2011 Census Ward Maps
                     </h3>
 
-                    <div class="flex justify-end mt-auto">
-                        <button class="toggle-button text-gray-700 text-2xl font-bold focus:outline-none bg-white rounded-full w-8 h-8 flex items-center justify-center border border-gray-200 shadow-sm hover:bg-gray-100 transition-colors duration-200"
-                                aria-expanded="false" aria-controls="census-description" aria-label="Toggle description for 2011 Census Ward Maps">
-                            +
-                        </button>
-                    </div>
+                    <button class="toggle-button bg-white rounded-full w-6 h-6 flex items-center justify-center text-gray-700 hover:text-red-500 transition-colors duration-200 absolute top-3 right-3"
+                            aria-expanded="false" aria-controls="census-description" aria-label="Toggle description for 2011 Census Ward Maps">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path class="toggle-icon-path" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16M4 12h16"></path>
+                        </svg>
+                    </button>
 
                     <div id="census-description" class="full-description mt-4" aria-hidden="true">
                         <p class="text-base text-gray-700">Ward boundaries and demographic data from the 2011 Census.</p>
@@ -255,21 +263,21 @@
 
             <!-- Changes in Hyderabad's Administrative Boundaries -->
             <div class="col-span-1 thematic-card-wrapper" data-theme="GOVERNANCE">
-                <div class="thematic-card bg-white p-8 rounded-xl border border-gray-100 shadow-md hover:shadow-lg hover:border-red-300 transition-all duration-300 ease-in-out">
-                    <p class="text-sm font-bold text-gray-800 mb-3">
+                <div class="thematic-card bg-white p-4 rounded-xl border border-gray-100 shadow-md hover:shadow-lg hover:border-red-500 transition-all duration-300 ease-in-out">
+                    <p class="text-sm font-bold text-gray-800 mb-2">
                         GOVERNANCE
                         <span class="text-gray-400 italic text-sm ml-2 font-light">Coming Soon</span>
                     </p>
-                    <h3 class="text-2xl font-semibold text-gray-900 mb-4">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-2">
                         Changes in Hyderabad's Administrative Boundaries
                     </h3>
 
-                    <div class="flex justify-end mt-auto">
-                        <button class="toggle-button text-gray-700 text-2xl font-bold focus:outline-none bg-white rounded-full w-8 h-8 flex items-center justify-center border border-gray-200 shadow-sm hover:bg-gray-100 transition-colors duration-200"
-                                aria-expanded="false" aria-controls="admin-description" aria-label="Toggle description for Administrative Boundaries">
-                            +
-                        </button>
-                    </div>
+                    <button class="toggle-button bg-white rounded-full w-6 h-6 flex items-center justify-center text-gray-700 hover:text-red-500 transition-colors duration-200 absolute top-3 right-3"
+                            aria-expanded="false" aria-controls="admin-description" aria-label="Toggle description for Administrative Boundaries">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path class="toggle-icon-path" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16M4 12h16"></path>
+                        </svg>
+                    </button>
 
                     <div id="admin-description" class="full-description mt-4" aria-hidden="true">
                         <p class="text-base text-gray-700">Shows how city boundaries have shifted over time.</p>
@@ -279,21 +287,21 @@
 
             <!-- Industrial Timeline of Hyderabad (1817–2010) -->
             <div class="col-span-1 thematic-card-wrapper" data-theme="ECONOMIC HISTORY">
-                <div class="thematic-card bg-white p-8 rounded-xl border border-gray-100 shadow-md hover:shadow-lg hover:border-red-300 transition-all duration-300 ease-in-out">
-                    <p class="text-sm font-bold text-gray-800 mb-3">
+                <div class="thematic-card bg-white p-4 rounded-xl border border-gray-100 shadow-md hover:shadow-lg hover:border-red-500 transition-all duration-300 ease-in-out">
+                    <p class="text-sm font-bold text-gray-800 mb-2">
                         ECONOMIC HISTORY
                         <span class="text-gray-400 italic text-sm ml-2 font-light">Coming Soon</span>
                     </p>
-                    <h3 class="text-2xl font-semibold text-gray-900 mb-4">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-2">
                         Industrial Timeline of Hyderabad (1817–2010)
                     </h3>
 
-                    <div class="flex justify-end mt-auto">
-                        <button class="toggle-button text-gray-700 text-2xl font-bold focus:outline-none bg-white rounded-full w-8 h-8 flex items-center justify-center border border-gray-200 shadow-sm hover:bg-gray-100 transition-colors duration-200"
-                                aria-expanded="false" aria-controls="industrial-description" aria-label="Toggle description for Industrial Timeline">
-                            +
-                        </button>
-                    </div>
+                    <button class="toggle-button bg-white rounded-full w-6 h-6 flex items-center justify-center text-gray-700 hover:text-red-500 transition-colors duration-200 absolute top-3 right-3"
+                            aria-expanded="false" aria-controls="industrial-description" aria-label="Toggle description for Industrial Timeline">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path class="toggle-icon-path" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16M4 12h16"></path>
+                        </svg>
+                    </button>
 
                     <div id="industrial-description" class="full-description mt-4" aria-hidden="true">
                         <p class="text-base text-gray-700">A historical overview of industrial development in the city.</p>
@@ -305,16 +313,16 @@
     </main>
 
     <!-- Text below thematic areas -->
-    <div class="container mx-auto px-6 py-4 text-center text-gray-400 italic text-sm font-light">
+    <div class="container mx-auto px-6 py-2 text-center text-gray-400 italic text-sm font-light">
         <p>This section will be continuously updated with more thematic areas and data visualizations.</p>
     </div>
 
     <!-- Footer Section -->
-    <footer class="bg-white text-gray-700 py-4 mt-12 border-t border-gray-100 shadow-sm">
+    <footer class="bg-white text-gray-700 py-4 mt-6 border-t border-gray-100 shadow-sm">
         <div class="container mx-auto px-8 text-center">
-            <p class="text-xs text-gray-600 mb-2">This website is under continuous development. You may encounter errors or incomplete content. Share your feedback at <a href="mailto:hulf.observatory@gmail.com" class="hover:underline">hulf.observatory@gmail.com</a></p>
+            <p class="text-xs text-gray-600 mb-2">This website is under continuous development. You may encounter errors or incomplete content. Share your feedback at <a href="mailto:hulf.observatory@gmail.com" class="underline text-gray-600 hover:text-red-500">hulf.observatory@gmail.com</a></p>
             <p class="text-xs mt-2">
-                <a href="disclaimer.html" class="hover:underline">Disclaimer</a>
+                <a href="disclaimer.html" class="underline text-gray-600 hover:text-red-500">Disclaimer</a>
             </p>
         </div>
     </footer>
@@ -324,12 +332,14 @@
         document.addEventListener('DOMContentLoaded', () => {
             const menuButton = document.getElementById('menu-button');
             const collapsibleNav = document.getElementById('collapsible-nav');
+            const menuIcon = menuButton.querySelector('svg'); // Select the SVG directly
 
             if (menuButton && collapsibleNav) {
                 // Toggle visibility of the collapsible menu
                 menuButton.addEventListener('click', () => {
                     const isHidden = collapsibleNav.classList.toggle('hidden');
                     menuButton.setAttribute('aria-expanded', !isHidden);
+                    menuIcon.classList.toggle('open'); // Animate the burger icon
                 });
 
                 // Close menu when a link is clicked
@@ -337,6 +347,7 @@
                     link.addEventListener('click', () => {
                         collapsibleNav.classList.add('hidden'); // Always close after clicking a link
                         menuButton.setAttribute('aria-expanded', false);
+                        menuIcon.classList.remove('open'); // Reset burger icon
                     });
                 });
 
@@ -345,6 +356,7 @@
                     if (!collapsibleNav.contains(event.target) && !menuButton.contains(event.target) && !collapsibleNav.classList.contains('hidden')) {
                         collapsibleNav.classList.add('hidden');
                         menuButton.setAttribute('aria-expanded', false);
+                        menuIcon.classList.remove('open');
                     }
                 });
             }
@@ -354,13 +366,25 @@
 
             thematicBoxes.forEach(box => {
                 const toggleButton = box.querySelector('.toggle-button');
+                const toggleIconPath = toggleButton.querySelector('svg path'); // Corrected: Select the path element inside the SVG
                 const fullDescription = box.querySelector('.full-description');
 
-                if (toggleButton && fullDescription) {
+
+                // Initialize descriptions to be hidden and button to '+'
+                fullDescription.classList.add('hidden'); // Ensure it starts hidden
+                fullDescription.classList.remove('expanded'); // Ensure it starts non-expanded
+                toggleIconPath.setAttribute('d', 'M12 4v16M4 12h16'); // Plus sign
+                toggleButton.setAttribute('aria-expanded', 'false');
+                fullDescription.setAttribute('aria-hidden', 'true');
+
+
+                if (toggleButton && fullDescription && toggleIconPath) {
                     // Add click listener to the entire box
                     box.addEventListener('click', (event) => {
                         // Prevent expansion/collapse if a link (title or "explore" link) or the toggle button itself is clicked
-                        if (event.target.tagName === 'A' || event.target === toggleButton || toggleButton.contains(event.target)) {
+                        // Only prevent default if the clicked element is an <a> tag *within the full description*
+                        // or if it's the toggle button itself.
+                        if (event.target.tagName === 'A' && fullDescription.contains(event.target) || event.target === toggleButton || toggleButton.contains(event.target)) {
                             return;
                         }
                         toggleDescription();
@@ -375,7 +399,7 @@
                     function toggleDescription() {
                         const isExpanded = fullDescription.classList.toggle('expanded'); // Use 'expanded' class for transition
                         fullDescription.classList.toggle('hidden', !isExpanded); // Keep 'hidden' for initial state and fallback
-                        toggleButton.textContent = isExpanded ? '-' : '+';
+                        toggleIconPath.setAttribute('d', isExpanded ? 'M4 12h16' : 'M12 4v16M4 12h16'); // Toggle to minus or plus
                         toggleButton.setAttribute('aria-expanded', isExpanded);
                         fullDescription.setAttribute('aria-hidden', !isExpanded);
                     }
@@ -408,7 +432,10 @@
                         // If 'All Themes' is clicked, clear all other selections
                         selectedThemes.clear();
                         selectedThemes.add('all');
-                        filterBubbles.forEach(b => b.classList.remove('selected'));
+                        filterBubbles.forEach(b => {
+                            b.classList.remove('selected');
+                            b.setAttribute('aria-pressed', 'false');
+                        });
                         bubble.classList.add('selected');
                         bubble.setAttribute('aria-pressed', 'true');
                     } else {
